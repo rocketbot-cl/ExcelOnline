@@ -6,7 +6,7 @@
   
 Working with Excel Online  
 
-## How to install this module
+## Howto install this module
   
 __Download__ and __install__ the content in 'modules' folder in Rocketbot path  
 

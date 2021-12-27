@@ -6,7 +6,7 @@
   
 Working with Excel Online  
   
-![banner](https://i.imgur.com/A3LR8l1.png)
+![banner](/docs/imgs/Banner_ExcelOnline.png)
 ## Como instalar este módulo
   
 __Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de rocketbot.  
