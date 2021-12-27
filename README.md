@@ -6,7 +6,7 @@
   
 Working with Excel Online  
 
-## How to install this module
+## Howto install this module
   
 __Download__ and __install__ the content in 'modules' folder in Rocketbot path  
 
@@ -58,6 +58,8 @@ Write a cell in a sheet
 
 
 
+### Changes
+Mon Dec 27 11:09:45 2021  (refs/stash) On master: !!GitHub_Desktop<master>
 
 ----
 ### OS
