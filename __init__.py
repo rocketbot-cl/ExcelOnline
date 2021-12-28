@@ -85,6 +85,7 @@ if module == "get_worksheets":
     workbook_id = GetParams("workbook_id")
     try:
         list_worksheets = excel_online_service.get_worksheets(workbook_id)
+        print(list_worksheets)
         SetVar(res, list_worksheets['value'])
     except Exception as e:
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
@@ -108,7 +109,7 @@ if module == "add_new_worksheet":
     workbook_id = GetParams("workbook_id")
     worksheet_name = GetParams("worksheet_name")
     try:
-        session_id = excel_online_service.create_session(workbook_id)
+        session_id = excel_online_service.create_session(workbook_id)['id']
         excel_online_service.add_new_worksheet(session_id, workbook_id, worksheet_name)
     except Exception as e:
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
@@ -122,7 +123,7 @@ if module == "get_cell":
     range_cell = GetParams("range_cell")
     res = GetParams("res")
     try:
-        session_id = excel_online_service.create_session(workbook_id)
+        session_id = excel_online_service.create_session(workbook_id)['id']
         value_cell = excel_online_service.get_cell(session_id, workbook_id, worksheet_name, range_cell)
         SetVar(res, value_cell)
     except Exception as e:
@@ -137,7 +138,7 @@ if module == "update_range":
     range_cell = GetParams("range_cell")
     value_cell = GetParams("value_cell")
     try:
-        session_id = excel_online_service.create_session(workbook_id)
+        session_id = excel_online_service.create_session(workbook_id)['id']
         excel_online_service.update_range(session_id, workbook_id, worksheet_name, range_cell, value_cell)
     except Exception as e:
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
