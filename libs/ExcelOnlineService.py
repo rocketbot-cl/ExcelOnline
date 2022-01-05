@@ -150,7 +150,9 @@ class ExcelOnlineService:
         }
         url = "https://graph.microsoft.com/v1.0/me/drive/items/{id}/workbook/createSession".format(id=id)
         response = requests.post(url, json=session_params, headers=headers)
+        print("Response: ", response.text)
         json_response = json.loads(response.text)
+        print("Json: ", json_response)
         return json_response
 
     def get_cell(self, session_id, workbook_id, sheet_name, range_cell):
@@ -186,5 +188,7 @@ class ExcelOnlineService:
             range_cell=range_cell
         )
         response = requests.patch(url, json=data, headers=headers)
+        print("Response: ", response.text)
         json_response = json.loads(response.text)
+        print("Json: ", json_response)
         return json_response
