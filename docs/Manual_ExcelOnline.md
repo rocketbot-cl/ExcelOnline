@@ -11,6 +11,17 @@ Working with Excel Online
   
 __Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de rocketbot.  
 
+## Como usar este modulo
+
+Para permitir la autenticación, primero debe registrar su aplicación en Azure App Registrations.
+
+1. Inicie sesión en Azure Portal (App Registrations)
+2. Cree una aplicación. Establezca un nombre.
+3. En “Tipos de cuenta” soportados elige "Cuentas de cualquier directorio de la organización y cuentas personales de Microsoft (por ejemplo, Skype, Xbox, Outlook.com)".
+4. Establezca la uri de redirección (Web) : https://localhost y haga click en registrarse.
+5. Anote el ID de la aplicación (cliente). Necesitará este valor.
+6. En "Certificados y secretos", genere un nuevo secreto de cliente. Establezca que la caducidad sea preferiblemente 24 meses. Anote el VALOR del secreto de cliente creado ahora. Se ocultará más adelante. Debe copiar VALOR, no Id de secreto.
+7. En Permisos de API, añadir los siguientes permisos, en permisos delegados y de aplicación: Files.ReadWriteAll
 
 
 ## Descripción de los comandos

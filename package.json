@@ -360,13 +360,13 @@
     {
       "en": {
         "title": "Get cell",
-        "description": "Get cell value",
+        "description": "Gets the value of a given cell or a specified range",
         "title_options": "Select Option",
         "options": null
       },
       "es": {
         "title": "Obtener celda",
-        "description": "Obtener valor de celda",
+        "description": "Obtiene el valor de una celda dada o un rango en especifico",
         "title_options": "Seleccione una opción",
         "options": null
       },
