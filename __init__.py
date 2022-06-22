@@ -84,7 +84,6 @@ if module == "setCredentials":
                 print ('Code never generated... Generate the code and connect for the first time.')
     except Exception as e:
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
-        print("Traceback: ", traceback.format_exc())
         PrintException()
         raise e
 
@@ -92,10 +91,9 @@ if module == "get_xlsx_files":
     res = GetParams("res")
     try:
         files = excel_online_service.get_xlsx_files()
-        SetVar(res, files['value'])
+        SetVar(res, files)
     except Exception as e:
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
-        print("Traceback: ", traceback.format_exc())
         PrintException()
         raise e
 
@@ -104,11 +102,9 @@ if module == "get_worksheets":
     workbook_id = GetParams("workbook_id")
     try:
         list_worksheets = excel_online_service.get_worksheets(workbook_id)
-        print(list_worksheets)
-        SetVar(res, list_worksheets['value'])
+        SetVar(res, list_worksheets)
     except Exception as e:
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
-        print("Traceback: ", traceback.format_exc())
         PrintException()
         raise e
 
@@ -120,7 +116,6 @@ if module == "create_workbook":
         SetVar(res, data_new_workbook)
     except Exception as e:
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
-        print("Traceback: ", traceback.format_exc())
         PrintException()
         raise e
 
@@ -132,7 +127,6 @@ if module == "add_new_worksheet":
         excel_online_service.add_new_worksheet(workbook_id, worksheet_name) # session_id
     except Exception as e:
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
-        print("Traceback: ", traceback.format_exc())
         PrintException()
         raise e
 
@@ -147,7 +141,6 @@ if module == "get_cell":
         SetVar(res, value_cell)
     except Exception as e:
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
-        print("Traceback: ", traceback.format_exc())
         PrintException()
         raise e
 
@@ -156,11 +149,12 @@ if module == "update_range":
     worksheet_name = GetParams("worksheet_name")
     range_cell = GetParams("range_cell")
     value_cell = GetParams("value_cell")
+    res = GetParams("res")
     try:
         # session_id = excel_online_service.create_session(workbook_id)['id']
-        excel_online_service.update_range(workbook_id, worksheet_name, range_cell, value_cell) # session_id
+        new_value_cell = excel_online_service.update_range(workbook_id, worksheet_name, range_cell, value_cell) # session_id
+        SetVar(res, new_value_cell)
     except Exception as e:
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
-        print("Traceback: ", traceback.format_exc())
         PrintException()
         raise e

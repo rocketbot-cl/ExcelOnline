@@ -146,7 +146,12 @@ class ExcelOnlineService:
         url = self.base_url + "me/drive/root/search(q='.xlsx')?select=name,id,webUrl"
         response = requests.get(url, headers=headers)
         json_response = json.loads(response.text)
-        return json_response
+        clean_data = []
+        for xlsx in json_response['value']:
+            for k in ['@odata.type','webUrl']:
+                xlsx.pop(k)
+            clean_data.append(xlsx)
+        return clean_data
 
     def get_worksheets(self, workbook_id):
         headers = {
@@ -155,7 +160,10 @@ class ExcelOnlineService:
         url = self.base_url + f"/me/drive/items/{workbook_id}/workbook/worksheets".format(workbook_id=workbook_id)
         response = requests.get(url, headers=headers)
         json_response = json.loads(response.text)
-        return json_response
+        sheets = []
+        for sheet in json_response['value']:
+            sheets.append(sheet['name'])
+        return sheets
 
     def create_workbook(self, name):
         headers = {
@@ -164,7 +172,7 @@ class ExcelOnlineService:
         url = self.base_url + f"/me/drive/root:/{name}.xlsx:/content".format(name=name)
         response = requests.put(url, headers=headers)
         json_response = json.loads(response.text)
-        return json_response
+        return json_response['id']
 
     def add_new_worksheet(self, workbook_id, sheet_name):
         headers = {
@@ -205,18 +213,16 @@ class ExcelOnlineService:
             sheet_name=sheet_name,
             range_cell=range_cell
         )
-        
-        print(range_cell)
         response = requests.get(url, headers=headers)
         json_response = json.loads(response.text)
-        return json_response
+        return json_response['values']
 
     def update_range(self, workbook_id, sheet_name, range_cell, value_cell): # session_id
         headers = {
             'Authorization': 'Bearer ' + self.access_token,
             # 'workbook-session-id': session_id
         }
-        cells = self.get_cell(workbook_id, sheet_name, range_cell)['values'] # session_id
+        cells = self.get_cell(workbook_id, sheet_name, range_cell) # session_id
         new_values = []
         for value in cells:
             replaced_cells = [value_cell for x in value]
@@ -230,7 +236,5 @@ class ExcelOnlineService:
             range_cell=range_cell
         )
         response = requests.patch(url, json=data, headers=headers)
-        print("Response: ", response.text)
         json_response = json.loads(response.text)
-        print("Json: ", json_response)
-        return json_response
+        return json_response['values']

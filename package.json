@@ -19,7 +19,7 @@
   "children": [
     {
       "en": {
-        "title": "Get acces code",
+        "title": "Get access code",
         "description": "Get access code to create the credentials for the API",
         "title_options": "Select Option",
         "options": null
@@ -138,13 +138,13 @@
     {
       "en": {
         "title": "Get XLSX files",
-        "description": "Return a list with all the XLSX files in the folder",
+        "description": "Return a list with all the XLSX files in the default location",
         "title_options": "Select Option",
         "options": null
       },
       "es": {
         "title": "Obtener archivos XLSX",
-        "description": "Devuelve una lista con todos los archivos XLSX en la carpeta",
+        "description": "Devuelve una lista con todos los archivos XLSX en la locación por defecto",
         "title_options": "Seleccione una opción",
         "options": null
       },
@@ -279,8 +279,8 @@
               "en": "Variable to assign"
             },
             "description": {
-              "es": "Variable a asignar. Retorna los datos del nuevo libro creado" ,
-              "en": "Variable to assign. Returns the data of the new workbook created"
+              "es": "Variable a asignar. Retorna ID del nuevo libro" ,
+              "en": "Variable to assign. Returns the ID of the new workbook"
             },
             "remove_vars": true,
             "id": "res",
@@ -363,13 +363,13 @@
     {
       "en": {
         "title": "Get cell",
-        "description": "Get cell data",
+        "description": "Get a cell value",
         "title_options": "Select Option",
         "options": null
       },
       "es": {
         "title": "Obtener celda",
-        "description": "Obtener datos de celda",
+        "description": "Obtener valor de celda",
         "title_options": "Seleccione una opción",
         "options": null
       },
@@ -426,8 +426,8 @@
               "en": "Variable to assign"
             },
             "description": {
-              "es": "Variable a asignar. Retorna datos de la celda o rango",
-              "en": "Variable to assign. Returns the cell or range data"
+              "es": "Variable a asignar. Retorna el valor de la celda o rango",
+              "en": "Variable to assign. Returns cell or range value/es"
             },
             "remove_vars": true,
             "id": "res",
@@ -451,7 +451,7 @@
     {
       "en": {
         "title": "Write cell",
-        "description": "Write a cell in a sheet",
+        "description": "Write/change a cell value",
         "title_options": "Select Option",
         "options": null
       },
@@ -519,6 +519,21 @@
             },
             "remove_vars": true,
             "id": "value_cell",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "new_value_cell",
+            "title": {
+              "es": "Variable a asignar",
+              "en": "Variable to assign"
+            },
+            "description": {
+              "es": "Variable a asignar. Retorna nuevos valores de la celda o rango",
+              "en": "Variable to assign. Returns cell or range new values"
+            },
+            "remove_vars": true,
+            "id": "res",
             "css": "col-md-12"
           }
         ]
