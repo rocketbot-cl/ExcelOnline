@@ -23,6 +23,9 @@ Para instalar librerias se debe ingresar por terminal a la carpeta "libs"
     pip install <package> -t .
 
 """
+import json
+import sys
+import os
 
 
 base_path = tmp_global_obj["basepath"]
@@ -30,42 +33,58 @@ cur_path = base_path + "modules" + os.sep + "ExcelOnline" + os.sep + "libs" + os
 if cur_path not in sys.path:
     sys.path.append(cur_path)
 
+import msal
 import traceback
 from ExcelOnlineService import ExcelOnlineService
 
 """
     Obtengo el modulo que fue invocado
 """
-global excel_online_service
+global excel_online_service, _client
+
+user_filename = 'user.json'
+credentials_filename = 'credentials.json'
+path_user = base_path + "modules" + os.sep + "ExcelOnline" + os.sep + user_filename
+path_credentials = base_path + "modules" + os.sep + "ExcelOnline" + os.sep + credentials_filename
+
 module = GetParams("module")
 
-if module == "setCredentials":
-    client_secret = GetParams("client_secret")
+if module == "getCode":
     client_id = GetParams("client_id")
-    redirect_uri = GetParams("redirect_uri")
+    client_secret = GetParams("client_secret")
+
+    excel_online_service = ExcelOnlineService(client_id=client_id, client_secret=client_secret, path_user=path_user,
+                    path_credentials=path_credentials)
+
+    _client = excel_online_service.get_code()
+    
+if module == "setCredentials":  
     code = GetParams("code")
-    tenant = GetParams("tenant")
     res = GetParams("res")
-    credentials_filename = 'credentials.json'
-    path_credentials = base_path + "modules" + os.sep + "ExcelOnline" + os.sep + credentials_filename
-    excel_online_service = ExcelOnlineService(client_id=client_id, client_secret=client_secret, tenant=tenant, redirect_uri=redirect_uri,
-                        path_credentials=path_credentials)
     try:
         try:
-            with open(path_credentials) as json_file:
-                data = json.load(json_file)
-            auth_code = {'refresh_token': data['refresh_token']}
-            grant_type = 'refresh_token'
-            response = excel_online_service.get_token(auth_code, grant_type)
+            with open(path_credentials) as cred_file:
+                credentials = json.load(cred_file)
+            with open(path_user) as user_file:
+                client_data = json.load(user_file)
+            
+            excel_online_service = ExcelOnlineService(client_id=client_data['client_id'], client_secret=client_data['client_secret'], path_user=path_user,
+                    path_credentials=path_credentials)
+                
+            refresh_token = credentials['refresh_token']
+            response = excel_online_service.get_old_token(refresh_token)
         except IOError:
-            grant_type = 'authorization_code'
-            auth_code = {'code': code}
-            response = excel_online_service.get_token(auth_code, grant_type)
-        is_connected = excel_online_service.create_tokens_file(response)
-        SetVar(res, is_connected)
+            if os.path.exists(user_file):
+                client_instance = _client
+                auth_code = code
+                response = excel_online_service.get_token(client_instance, auth_code)
+                is_connected = excel_online_service.create_tokens_file(response)
+                SetVar(res, is_connected)
+            else: 
+                print ('Code never generated... Generate the code and connect for the first time.')
     except Exception as e:
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
-        #print("Traceback: ", traceback.format_exc())
+        print("Traceback: ", traceback.format_exc())
         PrintException()
         raise e
 
@@ -109,8 +128,8 @@ if module == "add_new_worksheet":
     workbook_id = GetParams("workbook_id")
     worksheet_name = GetParams("worksheet_name")
     try:
-        session_id = excel_online_service.create_session(workbook_id)['id']
-        excel_online_service.add_new_worksheet(session_id, workbook_id, worksheet_name)
+        # session_id = excel_online_service.create_session(workbook_id)['id']
+        excel_online_service.add_new_worksheet(workbook_id, worksheet_name) # session_id
     except Exception as e:
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         print("Traceback: ", traceback.format_exc())
@@ -123,8 +142,8 @@ if module == "get_cell":
     range_cell = GetParams("range_cell")
     res = GetParams("res")
     try:
-        session_id = excel_online_service.create_session(workbook_id)['id']
-        value_cell = excel_online_service.get_cell(session_id, workbook_id, worksheet_name, range_cell)
+        # session_id = excel_online_service.create_session(workbook_id)['id']
+        value_cell = excel_online_service.get_cell(workbook_id, worksheet_name, range_cell) # session_id
         SetVar(res, value_cell)
     except Exception as e:
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
@@ -138,8 +157,8 @@ if module == "update_range":
     range_cell = GetParams("range_cell")
     value_cell = GetParams("value_cell")
     try:
-        session_id = excel_online_service.create_session(workbook_id)['id']
-        excel_online_service.update_range(session_id, workbook_id, worksheet_name, range_cell, value_cell)
+        # session_id = excel_online_service.create_session(workbook_id)['id']
+        excel_online_service.update_range(workbook_id, worksheet_name, range_cell, value_cell) # session_id
     except Exception as e:
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         print("Traceback: ", traceback.format_exc())
