@@ -20,8 +20,8 @@ __Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de ro
 Obtener codigo de acceso para generar las credenciales de la API
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|client_id|Client ID de la API|Your client_id|
-|client_secret|Client Secret de la API|Your client_secret|
+|client_id|ID de Cliente de la API|Your client_id|
+|client_secret|Secreto del Cliente de la API|Your client_secret|
 
 ### Establecer credenciales
   
@@ -52,7 +52,7 @@ Crear un nuevo libro en la ubicación por defecto
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Nombre del libro|Nombre del libro|Libro Nuevo|
-|Variable a asignar|Variable a asignar. Retorna los datos del nuevo libro creado|datos_nuevolibro|
+|Variable a asignar|Variable a asignar. Retorna el ID del nuevo libro creado|id_nuevolibro|
 
 ### Añadir nueva hoja
   
@@ -61,23 +61,24 @@ Añadir una nueva hoja al libro
 | --- | --- | --- |
 |ID del Libro|ID del libro|FB60B3125CDC0C03!238 (20 digits ID Code)|
 |Nombre de la hoja|Nombre de la hoja|Sheet1|
+|Variable a asignar|Variable a asignar. Retorna el nombre de la nueva hoja|nombre_nuevaHoja|
 
 ### Obtener celda
   
-Obtener datos de celda
+Obtener valor de celda o rango
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |ID del Libro|ID del Libro|FB60B3125CDC0C03!238 (20 digits ID Code)|
 |Nombre de la hoja|Nombre de la hoja|Sheet1|
 |Celda o rango|Celda o rango|A1:B1|
-|Variable a asignar|Variable a asignar. Retorna datos de la celda o rango|value_cell|
+|Variable a asignar|Variable a asignar. Retorna el valor de la celda o rango|value_cell|
 
-### Escribir celda
+### Escribir/cambiar celda
   
-Escribir una celda en una hoja
+Escribir/cambiar el valor de una celda o rango
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |ID del Libro|ID del libro|FB60B3125CDC0C03!238 (20 digits ID Code)|
 |Nombre de la hoja|Nombre de la hoja|Sheet1|
 |Celda o rango|Celda o rango donde se escribira|A1:B1|
-|Valor celda o rango|Valor de la celda o rango|value_cell|
+|Valor celda o rango|Variable a asignar. Retorna nuevos valores de la celda o rango"|value_cell|

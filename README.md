@@ -48,6 +48,7 @@ Note: It does not replace an existing workbook.
 
 6. Add new worksheet
 Add a new worksheet to the workbook
+Note: It does not replace an existing sheet.
 
 7. Get cell
 Get cell value

@@ -27,29 +27,27 @@ import json
 import sys
 import os
 
-
 base_path = tmp_global_obj["basepath"]
 cur_path = base_path + "modules" + os.sep + "ExcelOnline" + os.sep + "libs" + os.sep
 if cur_path not in sys.path:
     sys.path.append(cur_path)
 
-import msal
-import traceback
 from ExcelOnlineService import ExcelOnlineService
 
-"""
-    Obtengo el modulo que fue invocado
-"""
 global excel_online_service, _client
 
+# Set the paths for the output files
 user_filename = 'user.json'
 credentials_filename = 'credentials.json'
 path_user = base_path + "modules" + os.sep + "ExcelOnline" + os.sep + user_filename
 path_credentials = base_path + "modules" + os.sep + "ExcelOnline" + os.sep + credentials_filename
 
+
+# Get the module that was called
 module = GetParams("module")
 
 if module == "getCode":
+    # Creates the instance of a client and obtains the authorization code
     client_id = GetParams("client_id")
     client_secret = GetParams("client_secret")
 
@@ -58,8 +56,8 @@ if module == "getCode":
 
     _client = excel_online_service.get_code()
     
-if module == "setCredentials":  
-    code = GetParams("code")
+if module == "setCredentials":
+    # Seeks for the refresh_token in the credentials and client data, if does not exist, it will take the client instance and the generates code to create the credentials.
     res = GetParams("res")
     try:
         try:
@@ -122,9 +120,10 @@ if module == "create_workbook":
 if module == "add_new_worksheet":
     workbook_id = GetParams("workbook_id")
     worksheet_name = GetParams("worksheet_name")
+    res = GetParams("res")
     try:
-        # session_id = excel_online_service.create_session(workbook_id)['id']
-        excel_online_service.add_new_worksheet(workbook_id, worksheet_name) # session_id
+        new_sheet = excel_online_service.add_new_worksheet(workbook_id, worksheet_name)
+        SetVar(res, new_sheet)
     except Exception as e:
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
@@ -136,8 +135,7 @@ if module == "get_cell":
     range_cell = GetParams("range_cell")
     res = GetParams("res")
     try:
-        # session_id = excel_online_service.create_session(workbook_id)['id']
-        value_cell = excel_online_service.get_cell(workbook_id, worksheet_name, range_cell) # session_id
+        value_cell = excel_online_service.get_cell(workbook_id, worksheet_name, range_cell)
         SetVar(res, value_cell)
     except Exception as e:
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
@@ -151,8 +149,7 @@ if module == "update_range":
     value_cell = GetParams("value_cell")
     res = GetParams("res")
     try:
-        # session_id = excel_online_service.create_session(workbook_id)['id']
-        new_value_cell = excel_online_service.update_range(workbook_id, worksheet_name, range_cell, value_cell) # session_id
+        new_value_cell = excel_online_service.update_range(workbook_id, worksheet_name, range_cell, value_cell)
         SetVar(res, new_value_cell)
     except Exception as e:
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")

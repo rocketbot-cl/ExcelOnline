@@ -41,7 +41,7 @@
               "en": "client_id:"
             },
             "description": {
-              "es": "Client ID de la API",
+              "es": "ID de Cliente de la API",
               "en": "Client ID from the API"
             },
             "id": "client_id",
@@ -55,7 +55,7 @@
               "en": "client_secret:"
             },
             "description": {
-              "es": "Client Secret de la API",
+              "es": "Secreto del Cliente de la API",
               "en": "Client Secret from the API"
             },
             "id": "client_secret",
@@ -273,7 +273,7 @@
           },
           {
             "type": "input",
-            "placeholder": "datos_nuevolibro",
+            "placeholder": "id_nuevolibro",
             "title": {
               "es": "Variable a asignar",
               "en": "Variable to assign"
@@ -344,6 +344,21 @@
             },
             "id": "worksheet_name",
             "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "nombre_nuevaHoja",
+            "title": {
+              "es": "Variable a asignar",
+              "en": "Variable to assign"
+            },
+            "description": {
+              "es": "Variable a asignar. Retorna el nombre de la nueva hoja" ,
+              "en": "Variable to assign. Returns the name of the new sheet"
+            },
+            "remove_vars": true,
+            "id": "res",
+            "css": "col-md-12"
           }
         ]
       },
@@ -363,13 +378,13 @@
     {
       "en": {
         "title": "Get cell",
-        "description": "Get a cell value",
+        "description": "Get a cell or range values",
         "title_options": "Select Option",
         "options": null
       },
       "es": {
         "title": "Obtener celda",
-        "description": "Obtener valor de celda",
+        "description": "Obtener valor de celda o rango",
         "title_options": "Seleccione una opción",
         "options": null
       },
@@ -450,14 +465,14 @@
     },
     {
       "en": {
-        "title": "Write cell",
-        "description": "Write/change a cell value",
+        "title": "Write/change cell",
+        "description": "Write/change a cell or range value",
         "title_options": "Select Option",
         "options": null
       },
       "es": {
-        "title": "Escribir celda",
-        "description": "Escribir una celda en una hoja",
+        "title": "Escribir/cambiar celda",
+        "description": "Escribir/cambiar el valor de una celda o rango",
         "title_options": "Seleccione una opción",
         "options": null
       },

@@ -17,7 +17,18 @@ class ExcelOnlineService:
         self.path_user = path_user
         self.path_credentials = path_credentials
         self.base_url = 'https://graph.microsoft.com/v1.0/'
+    
     def get_code(self):
+        """ Get the authorization code.
+
+        The code is needed to obtain the access credentials.
+
+        Returns
+        -------
+        dict, client
+            a json with client data and a client instance
+        """
+        
         try:
             client_instance = msal.ConfidentialClientApplication(
             client_id=self.client_id,
@@ -43,16 +54,16 @@ class ExcelOnlineService:
     
     
     def get_new_token(self, client_instance, auth_code):
-        """ Get the access_token or refresh_token.
+        """ Get the access_token.
 
-        The token that is obtained depends if it is the first time that the user is authenticated or not.
+        The token obtained is the one of the first time that the user is authenticated.
 
         Parameters
         ----------
-        auth_code : dict
-            Contains code or refresh_token
-        grant_type : str
-            Type of grant_type, it could be code or refresh_token
+        client_instance : client instance 
+            Initialized with get_code()
+        auth_code : str
+            Authorization Code for the client instance
 
         Returns
         -------
@@ -81,22 +92,18 @@ class ExcelOnlineService:
             raise e
 
     def get_old_token(self, refresh_token):
-        """ Build the request.
+        """ Get the access_token using the refresh_token.
 
-        It depends if it is access_token or refresh_token.
+        The token that is obtained is the one after the user has been authenticated for the first time.
 
         Parameters
         ----------
-        auth_code : dict
-            Contains code or refresh_token
-        grant_type : str
-            Type of grant_type, it could be code or refresh_token
-
+        refresh_token : str
+            
         Returns
         -------
-        string, dict
-            a formed url and a dict with parameters
-
+        dict
+            a json with the credentials
         """
         try:
             client_instance = msal.ConfidentialClientApplication(
@@ -129,7 +136,6 @@ class ExcelOnlineService:
         ----------
         credentials : dict
             Contains the credentials
-
         """
         try:
             with open(self.path_credentials, 'w') as credfile:
@@ -140,6 +146,13 @@ class ExcelOnlineService:
             raise e
 
     def get_xlsx_files(self):
+        """ Get the '.xlsx' files in the directory.
+            
+        Returns
+        -------
+        list
+            a list of dictionaries with name and ID of the xlsx files
+        """
         headers = {
             'Authorization': 'Bearer ' + self.access_token
         }
@@ -154,6 +167,17 @@ class ExcelOnlineService:
         return clean_data
 
     def get_worksheets(self, workbook_id):
+        """ Get the worksheets of a workbook.
+
+        Parameters
+        ----------
+        workboook_id : str
+            
+        Returns
+        -------
+        list
+            a list with the worksheets names
+        """
         headers = {
             'Authorization': 'Bearer ' + self.access_token
         }
@@ -166,6 +190,17 @@ class ExcelOnlineService:
         return sheets
 
     def create_workbook(self, name):
+        """ Creates a new workbook.
+
+        Parameters
+        ----------
+        name : str
+            
+        Returns
+        -------
+        str
+            the ID of the new workbook
+        """
         headers = {
             'Authorization': 'Bearer ' + self.access_token
         }
@@ -175,10 +210,20 @@ class ExcelOnlineService:
         return json_response['id']
 
     def add_new_worksheet(self, workbook_id, sheet_name):
+        """ Add a new worksheets in a workbook.
+
+        Parameters
+        ----------
+        workboook_id : str
+        sheet_name : str
+            
+        Returns
+        -------
+        str
+            the name of the new worksheet
+        """
         headers = {
-            # 'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + self.access_token,
-            # 'workbook-session-id': session_id
         }
         data = {
             "name": sheet_name
@@ -187,26 +232,24 @@ class ExcelOnlineService:
             workbook_id=workbook_id)
         response = requests.post(url, json=data, headers=headers)
         json_response = json.loads(response.text)
-        return json_response
+        return json_response['name']
 
-    # def create_session(self, id):
-    #     headers = {
-    #         'Authorization': 'Bearer ' + self.access_token
-    #     }
-    #     session_params = {
-    #         "persistChanges": True
-    #     }
-    #     url = "https://graph.microsoft.com/v1.0/me/drive/items/{id}/workbook/createSession".format(id=id)
-    #     response = requests.post(url, json=session_params, headers=headers)
-    #     print("Response: ", response.text)
-    #     json_response = json.loads(response.text)
-    #     print("Json: ", json_response)
-    #     return json_response
+    def get_cell(self, workbook_id, sheet_name, range_cell):
+        """ Get the value of a cell or range from a workbook.
 
-    def get_cell(self, workbook_id, sheet_name, range_cell): # session_id
+        Parameters
+        ----------
+        workboook_id : str
+        sheet_name : str
+        range_cell: str
+            
+        Returns
+        -------
+        list
+            a list of lists (representing rows and colums) with the values of the cell/s
+        """
         headers = {
             'Authorization': 'Bearer ' + self.access_token,
-            # 'workbook-session-id': session_id
         }
         url = self.base_url + f"/me/drive/items/{workbook_id}/workbook/worksheets/{sheet_name}/range(address='{range_cell}')".format(
             workbook_id=workbook_id,
@@ -217,12 +260,25 @@ class ExcelOnlineService:
         json_response = json.loads(response.text)
         return json_response['values']
 
-    def update_range(self, workbook_id, sheet_name, range_cell, value_cell): # session_id
+    def update_range(self, workbook_id, sheet_name, range_cell, value_cell):
+        """ Get the value of a cell or range from a workbook.
+
+        Parameters
+        ----------
+        workboook_id : str
+        sheet_name : str
+        range_cell: str
+        value_cell: str, int or float
+            
+        Returns
+        -------
+        list
+            a list of lists (representing rows and colums) with the new values of the cell/s
+        """
         headers = {
             'Authorization': 'Bearer ' + self.access_token,
-            # 'workbook-session-id': session_id
         }
-        cells = self.get_cell(workbook_id, sheet_name, range_cell) # session_id
+        cells = self.get_cell(workbook_id, sheet_name, range_cell)
         new_values = []
         for value in cells:
             replaced_cells = [value_cell for x in value]
