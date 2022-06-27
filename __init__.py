@@ -32,6 +32,11 @@ cur_path = base_path + "modules" + os.sep + "ExcelOnline" + os.sep + "libs" + os
 if cur_path not in sys.path:
     sys.path.append(cur_path)
 
+class NoCode(Exception):
+    """Raise when no code have been generated for a new connection"""
+    pass
+    
+
 from ExcelOnlineService import ExcelOnlineService
 
 global excel_online_service, _client
@@ -58,6 +63,7 @@ if module == "getCode":
     
 if module == "setCredentials":
     # Seeks for the refresh_token in the credentials and client data, if does not exist, it will take the client instance and the generates code to create the credentials.
+    code = GetParams("code")
     res = GetParams("res")
     try:
         try:
@@ -72,14 +78,14 @@ if module == "setCredentials":
             refresh_token = credentials['refresh_token']
             response = excel_online_service.get_old_token(refresh_token)
         except IOError:
-            if os.path.exists(user_file):
+            if os.path.exists(path_user):
                 client_instance = _client
                 auth_code = code
-                response = excel_online_service.get_token(client_instance, auth_code)
+                response = excel_online_service.get_new_token(client_instance, auth_code)
                 is_connected = excel_online_service.create_tokens_file(response)
                 SetVar(res, is_connected)
             else: 
-                print ('Code never generated... Generate the code and connect for the first time.')
+                raise NoCode('Code not generated. Generate the code and then try the new connection.')
     except Exception as e:
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
