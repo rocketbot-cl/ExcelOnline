@@ -1,32 +1,30 @@
 ## Como usar este modulo
 
-Para permitir la autenticación, primero debe registrar su aplicación en Azure App Registrations.
+Antes de usar este modulo, es necesario registrar tu aplicación en el portal de Azure. 
 
-1- Inicie sesión en Azure Portal (App Registrations). Link aqui: https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade
-2- Cree una aplicación. Establezca un nombre.
-3- En “Tipos de cuenta” soportados elige "Cuentas de cualquier directorio de la organización y cuentas personales de Microsoft (por ejemplo, Skype, Xbox, Outlook.com)".
-4- Establezca la uri de redirección como https://localhost. Establezca la plataforma como Web y haga click en registrarse.
-5- Anote el ID de la aplicación (cliente). Necesitará este valor.
-6- En "Certificados y secretos", genere un nuevo secreto de cliente. Establezca que la caducidad sea preferiblemente 24 meses. Anote el VALOR del secreto de cliente creado ahora. Se ocultará más adelante. Debe copiar VALOR, no Id de secreto.
-7- En Permisos de API, damos clic en "Añadir Permisos", luego elegimos la opcion de "Microsoft Graph" y luego añadir los siguientes permisos en permisos delegados y de aplicación: Files.ReadWriteAll
-8- Luego modificar los valores entre llaves de el el siguiente link con los datos de su aplicacion: https://login.microsoftonline.com/{tenant}/oauth2/v2.0/authorize?client_id={client_id}&response_type=code&redirect_uri={redirect_uri}&response_mode=query&scope=offline_access%20files.readwrite.all&state=12345
-Deberia modificar tenant por el que le aparece en "Informacion general" en "Id de directorio (Inquilino). En caso de tener una cuenta personal, utilizar "common" como tenant. Reemplazar el client_id y redirect_uri correspondiente. Nos pedira que iniciemos sesion y demos permisos. Luego al final, se generara una URL en nuestra barra de direcciones como la siguiente: http://localhost/?code=M.R3_BAY.3a97b36e-73cc-2342-3421-0b1054c192d6&state=12345 y obtener el CODE que en este caso seria el siguiente: M.R3_BAY.3a97b36e-73cc-2342-3421-0b1054c192d6
+Registración: 
+
+1. Inicie sesión en el portal de Azure. Luego diríjase al siguiente link: https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade (Registración de Aplicaciones). 
+2. Click en "Nueva Registración". Elija un nombre. 
+3. En "Tipo de Cuentas" elija "Cuentas de cualquier directorio de la organización y cuentas personales de Microsoft (por ejemplo, Skype, Xbox)". 
+4. En "URI de Redirección" selecciones "Web" como plataforma y ponga como URI: __https://localhost/__. Finalmente clieckear en "Registrar". 
+5. Una vez registrada, en la sección "General" encontrara el "ID de Aplicación (Cliente)", escriba/guárdelo, lo necesitara mas adelante. 
+6. Diríjase a "Certificados y Secretos", genere un nuevo "Secreto de Cliente", escriba una descripción y fije la expiración en 24 meses (preferiblemente). Click en "Adherir" y escriba/guarde el "Valor" (NO el "ID de Secreto"), lo necesitara luego junto con el ID de la App. 
+7. Finalmente, vaya a "Permisos de API", clickee en "Adherir permiso", luego en "Microsoft Graph" y seleccione "Permisos delegados". En la barra de búsqueda tipee, "Files.ReadWriteAll", marque con un tilde el casillero y clickee en "Adherir Permisos". 
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
 ## How to use this module
 
-To enable authentication, you must first register your application in Azure App Registrations.
+Before using this module, you must register your app into the Azure Portal.
 
-1- Log in to Azure Portal (App Registrations). Link here: https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade
-2- Create an application. Set a name.
-3- Under "Supported account types" choose "Accounts from any organization directory and Microsoft personal accounts (e.g. Skype, Xbox, Outlook.com)".
-4- Set the redirect uri as https://localhost. Set the platform as Web and click on register.
-5- Write down the application (client) ID. You will need this value.
-6- In "Certificates and secrets", generate a new client secret. Set the expiration date preferably to 24 months. Write down the VALUE of the client secret created now. It will be hidden later. You must copy VALUE, not secret ID.
-7- In API Permissions, click on "Add Permissions", then choose the "Microsoft Graph" option and then add the following permissions in delegated and application permissions: Files.ReadWriteAll
-8- Then modify the values between braces of the following link with the data of your application: https://login.microsoftonline.com/{tenant}/oauth2/v2.0/authorize?client_id={client_id}&response_type=code&redirect_uri={redirect_uri}&response_mode=query&scope=offline_access%20files.readwrite.all&state=12345
-You should change tenant to the one that appears in "General Information" under "Directory ID (Tenant). In case you have a personal account, use "common" as tenant. Replace the corresponding client_id and redirect_uri. We will be asked to log in and give permissions. Then at the end, it will generate a URL in our address bar like the following: http://localhost/?code=M.R3_BAY.3a97b36e-73cc-2342-3421-0b1054c192d6&state=12345 and get the CODE which in this case would be the following: M.R3_BAY.3a97b36e-73cc-2342-3421-0b1054c192d6
+Registrations.
 
+1. Sign in to Azure Portal. Then go to the next link: https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade (App Registrations).
+2. Click on "New registration". Choose a name.
+3. In “Supported account types” choose "Accounts in any organizational directory (Any Azure AD directory - Multitenant) and personal Microsoft accounts (e.g. Skype, Xbox)".
+4. In "Redirect URI" select "Web" as a plataform and set the URI to: https://localhost/. Finally click on "Register"
+5. Once registered, on the "Overview" section you will find the "Application (client) ID", write it down/save it, you will need it later.
+6. Go to "Certificates & secrets", generate a "New client secret", write a description and set the expration time to 24 months (preferably). Click on "Add" and write down/save the "Value" (NOT the "Secret ID"), you will need it later together with the App ID.
+7. Finally, go to "API persmissions", click on "Add a permission", then on "Microsoft Graph" and select "Delegated permissions". In the search bar type "Files.ReadWriteAll", mark the checkbox and click on "Add permissions".
 

@@ -13,50 +13,48 @@ __Download__ and __install__ the content in 'modules' folder in Rocketbot path
 
 ## Como usar este modulo
 
-Para permitir la autenticación, primero debe registrar su aplicación en Azure App 
+Before using this module, you must register your app into the Azure Portal.
+
 Registrations.
 
-1. Inicie sesión en Azure Portal (App Registrations). Link aqui: https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade
-2. Cree una aplicación. Establezca un nombre.
-3. En “Tipos de cuenta” soportados elige "Cuentas de cualquier directorio de la organización y cuentas personales de Microsoft (por ejemplo, Skype, Xbox, Outlook.com)".
-4. Establezca la uri de redirección como https://localhost. Establezca la plataforma como Web y haga click en registrarse.
-5. Anote el ID de la aplicación (cliente). Necesitará este valor.
-6. En "Certificados y secretos", genere un nuevo secreto de cliente. Establezca que la caducidad sea preferiblemente 24 meses. Anote el VALOR del secreto de cliente creado ahora. Se ocultará más adelante. Debe copiar VALOR, no Id de secreto.
-7. En Permisos de API, damos clic en "Añadir Permisos", luego elegimos la opcion de "Microsoft Graph" y luego añadir los siguientes permisos en permisos delegados y de aplicación: Files.ReadWriteAll
-8. Luego modificar los valores entre llaves de el el siguiente link con los datos de su aplicacion: https://login.microsoftonline.com/{tenant}/oauth2/v2.0/authorize?client_id={client_id}&response_type=code&redirect_uri={redirect_uri}&response_mode=query&scope=offline_access%20files.readwrite.all&state=12345
-
-Deberia modificar tenant por el que le aparece en "Informacion general" en "Id de directorio (Inquilino). En caso de 
-tener una cuenta personal, utilizar "common" como tenant. Reemplazar el client_id y redirect_uri correspondiente. Nos 
-pedira que iniciemos sesion y demos permisos. Luego al final, se generara una URL en nuestra barra de direcciones como 
-la siguiente: http://localhost/?code=M.R3_BAY.3a97b36e-73cc-2342-3421-0b1054c192d6&state=12345 y obtener el CODE que en 
-este caso seria el siguiente: M.R3_BAY.3a97b36e-73cc-2342-3421-0b1054c192d6
-
+1. Sign in to Azure Portal (App Registrations). Then go to the next link: https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade
+2. Click on "New registration". Choose a name.
+3. In “Supported account types” choose "Accounts in any organizational directory (Any Azure AD directory - Multitenant) and personal Microsoft accounts (e.g. Skype, Xbox)".
+4. In "Redirect URI" select "Web" as a plataform an set the URI to: https://localhost/. Finally click on "Register"
+5. Once registered, on the "Overview" section you will find the "Application (client) ID", write it down/save it, you will need it later.
+6. Go to "Certificates & secrets", generate a "New client secret", write a description and set the expration time to 24 months. Click on "Add" and write down/save the "Value" (NOT the "Secret ID"), you will need it later together with the App ID.
+7. Finally, go to "API persmissions", click on "Add a permission", then on "Microsoft Graph" and select "Permisos delegados". In the serch bar type Files.ReadWriteAll, mark the checkbox and click on "Add permissions".
+8. Get the Access Code with "Get Access Code" funtion (See "Overview").
 
 ## Overview
 
 
-1. Set credentials  
+1. Get acces code  
+Using the "Application (client) ID" and the "Secret Value", after clicking on accept the web browser will open asking to sign in and then to accept the conection with your application. Once clicked on "Continue" it will redirect you to a URL like this: https://localhost/?code=M.R3_BAY.c0173ccb-c865-d99f-008c-2c7c9478d63f. Copy whats after "code=", and use it in Set Credentials.
+Note: This step is necessary to be done just once to get the first token. 
+
+2. Set credentials
 Set credentials to make available the API
 
-2. Get XLSX files  
-Return a list with all the XLSX files in the folder
+3. Get XLSX files
+Return a list with all the XLSX files in the default location
 
-3. Get worksheets  
+4. Get worksheets
 Get worksheets from an excel file
 
-4. Create workbook  
-Create a new workbook in default location
+5. Create workbook
+Create a new workbook in the default location. 
+Note: It does not replace an existing workbook.
 
-5. Add new worksheet  
+6. Add new worksheet
 Add a new worksheet to the workbook
+Note: It does not replace an existing sheet.
 
-6. Get cell  
+7. Get cell
 Get cell value
 
-7. Write cell  
-Write a cell in a sheet  
-
-
+8. Write cell
+Write/change a cell value
 
 ### Changes
 Mon Dec 27 11:09:45 2021  (refs/stash) On master: !!GitHub_Desktop<master>
