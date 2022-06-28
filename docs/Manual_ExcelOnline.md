@@ -17,7 +17,10 @@ Registración:
 4. En "URI de Redirección" selecciones "Web" como plataforma y ponga como URI: __https://localhost/__. Finalmente clieckear en "Registrar". 
 5. Una vez registrada, en la sección "General" encontrara el "ID de Aplicación (Cliente)", escriba/guárdelo, lo necesitara mas adelante. 
 6. Diríjase a "Certificados y Secretos", genere un nuevo "Secreto de Cliente", escriba una descripción y fije la expiración en 24 meses (preferiblemente). Click en "Adherir" y escriba/guarde el "Valor" (NO el "ID de Secreto"), lo necesitara luego junto con el ID de la App. 
-7. Finalmente, vaya a "Permisos de API", clickee en "Adherir permiso", luego en "Microsoft Graph" y seleccione "Permisos delegados". En la barra de búsqueda tipee, "Files.ReadWriteAll", marque con un tilde el casillero y clickee en "Adherir Permisos". 
+7. Finalmente, vaya a "Permisos de API", clickee en "Adherir permiso", luego en "Microsoft Graph" y seleccione "Permisos delegados". En la barra de búsqueda tipee, "Files.ReadWriteAll", marque con un tilde el casillero y clickee en "Adherir Permisos".
+8. Obtener es codigo de acceso mediante la función __Obtener codigo de acceso__ utilizando el "ID de Aplicación (Cliente)" y "Secreto de Cliente" previamente guardados. Al aceptar, se abribra una ventana del navegador web pidiendo que ingrese y acecpte la conexión con la aplicación. Una vez dió "Continuar", ser'a redirigido a una URL como la siguiente:  https://localhost/?code=M.R3_BAY.c0173ccb-c865-d99f-008c-2c7c9478d63f. Copie los que se encuentra luego de "code=", este es el codigo con el cual solicitar las credenciales de acceso mediante la función __Establecer credenciales__.
+
+Nota: Este ultimo paso es necesario solo la primera vez que solicita el token o cuando caduque el secreto.
 
 ## __Descripción de los comandos__
 

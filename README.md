@@ -24,14 +24,15 @@ Registrations.
 5. Once registered, on the "Overview" section you will find the "Application (client) ID", write it down/save it, you will need it later.
 6. Go to "Certificates & secrets", generate a "New client secret", write a description and set the expration time to 24 months. Click on "Add" and write down/save the "Value" (NOT the "Secret ID"), you will need it later together with the App ID.
 7. Finally, go to "API persmissions", click on "Add a permission", then on "Microsoft Graph" and select "Permisos delegados". In the serch bar type Files.ReadWriteAll, mark the checkbox and click on "Add permissions".
-8. Get the Access Code with "Get Access Code" funtion (See "Overview").
+8. Get the Access Code with "Get Access Code" funtion. Using the "Application (client) ID" and the "Secret Value", after clicking on accept the web browser will open asking to sign in and then to accept the conection with your application. Once clicked on "Continue" it will redirect you to a URL like this: https://localhost/?code=M.R3_BAY.c0173ccb-c865-d99f-008c-2c7c9478d63f. Copy whats after "code=", and use it in Set Credentials.
+
+Note: This step is necessary to be done just to get the token for the first time or when the "Secret Value" expiers. 
 
 ## Overview
 
 
-1. Get acces code  
-Using the "Application (client) ID" and the "Secret Value", after clicking on accept the web browser will open asking to sign in and then to accept the conection with your application. Once clicked on "Continue" it will redirect you to a URL like this: https://localhost/?code=M.R3_BAY.c0173ccb-c865-d99f-008c-2c7c9478d63f. Copy whats after "code=", and use it in Set Credentials.
-Note: This step is necessary to be done just once to get the first token. 
+1. Get access code
+
 
 2. Set credentials
 Set credentials to make available the API
