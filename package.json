@@ -35,9 +35,9 @@
         "inputs": [
           {
             "type": "input",
-            "placeholder": "Your client_id",
+            "placeholder": "cliente_id",
             "title": {
-              "es": "client_id:",
+              "es": "id_cliente:",
               "en": "client_id:"
             },
             "description": {
@@ -49,14 +49,14 @@
           },
           {
             "type": "input",
-            "placeholder": "Your client_secret",
+            "placeholder": "valor_secreto_cliente",
             "title": {
-              "es": "client_secret:",
-              "en": "client_secret:"
+              "es": "valor_secreto_cliente:",
+              "en": "client_secret_value:"
             },
             "description": {
-              "es": "Secreto del Cliente de la API",
-              "en": "Client Secret from the API"
+              "es": "Valor del Secreto del Cliente de la API",
+              "en": "Client Secret Value from the API"
             },
             "id": "client_secret",
             "css": "col-md-12"
@@ -110,13 +110,14 @@
             "type": "input",
             "placeholder": "variable",
             "title": {
-              "es": "res",
-              "en": "res"
+              "es": "Variable a asignar",
+              "en": "Variable to assign"
             },
             "description": {
               "es": "Variable a asignar. Si la conexion es exitosa retornara True, caso contraria sera False",
               "en": "Variable to assign. If the connection is successful, it will return True, otherwise it will return False"
             },
+            "remove_vars": true,
             "id": "res",
             "css": "col-md-12"
           }
@@ -208,6 +209,7 @@
               "es": "ID del Libro",
               "en": "Workbook ID"
             },
+            "remove_vars": true,
             "id": "workbook_id",
             "css": "col-md-12"
           },
@@ -273,7 +275,7 @@
           },
           {
             "type": "input",
-            "placeholder": "id_nuevolibro",
+            "placeholder": "id_nuevoLibro",
             "title": {
               "es": "Variable a asignar",
               "en": "Variable to assign"
@@ -328,6 +330,7 @@
               "es": "ID del libro",
               "en": "Workbook ID"
             },
+            "remove_vars": true,
             "id": "workbook_id",
             "css": "col-md-12"
           },
@@ -342,6 +345,7 @@
               "es": "Nombre de la hoja",
               "en": "Worksheet name"
             },
+            "remove_vars": true,
             "id": "worksheet_name",
             "css": "col-md-12"
           },
@@ -402,6 +406,7 @@
               "es": "ID del Libro",
               "en": "Workbook ID"
             },
+            "remove_vars": true,
             "id": "workbook_id",
             "css": "col-md-12"
           },
@@ -416,6 +421,7 @@
               "es": "Nombre de la hoja",
               "en": "Worksheet name"
             },
+            "remove_vars": true,
             "id": "worksheet_name",
             "css": "col-md-12"
           },
@@ -430,12 +436,13 @@
               "es": "Celda o rango",
               "en": "Cell or range"
             },
+            "remove_vars": true,
             "id": "range_cell",
             "css": "col-md-12"
           },
           {
             "type": "input",
-            "placeholder": "value_cell",
+            "placeholder": "valor_celda",
             "title": {
               "es": "Variable a asignar",
               "en": "Variable to assign"
@@ -490,6 +497,7 @@
               "es": "ID del libro",
               "en": "Workbook ID"
             },
+            "remove_vars": true,
             "id": "workbook_id",
             "css": "col-md-12"
           },
@@ -504,6 +512,7 @@
               "es": "Nombre de la hoja",
               "en": "Worksheet name"
             },
+            "remove_vars": true,
             "id": "worksheet_name",
             "css": "col-md-12"
           },
@@ -518,6 +527,7 @@
               "es": "Celda o rango donde se escribira",
               "en": "Cell or range where it will be written"
             },
+            "remove_vars": true,
             "id": "range_cell",
             "css": "col-md-12"
           },
@@ -538,7 +548,7 @@
           },
           {
             "type": "input",
-            "placeholder": "new_value_cell",
+            "placeholder": "nuevo_valor_celda",
             "title": {
               "es": "Variable a asignar",
               "en": "Variable to assign"
