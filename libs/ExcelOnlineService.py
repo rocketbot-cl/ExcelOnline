@@ -208,8 +208,33 @@ class ExcelOnlineService:
         response = requests.put(url, headers=headers)
         json_response = json.loads(response.text)
         return json_response['id']
+    
+        
+    def create_session(self, id):
+        headers = {
+            'Authorization': 'Bearer ' + self.access_token
+        }
+        session_params = {
+            "persistChanges": True
+        }
+        url = "https://graph.microsoft.com/v1.0/me/drive/items/{id}/workbook/createSession".format(id=id)
+        response = requests.post(url, json=session_params, headers=headers)
+        json_response = json.loads(response.text)
+        return json_response['id']
+    
+    def close_session(self, session_id):
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + self.access_token,
+            'workbook-session-id': session_id
+        }
+        url = "https://graph.microsoft.com/v1.0/me/drive/items/{id}/workbook/closeSession".format(id=id)
+        
+        response = requests.post(url, headers=headers)
+        json_response = json.loads(response.text)
+        return json_response
 
-    def add_new_worksheet(self, workbook_id, sheet_name):
+    def add_new_worksheet(self, workbook_id, sheet_name, session_id):
         """ Add a new worksheets in a workbook.
 
         Parameters
@@ -223,7 +248,9 @@ class ExcelOnlineService:
             the name of the new worksheet
         """
         headers = {
+            'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + self.access_token,
+            'workbook-session-id': session_id
         }
         data = {
             "name": sheet_name
@@ -234,7 +261,7 @@ class ExcelOnlineService:
         json_response = json.loads(response.text)
         return json_response['name']
 
-    def get_cell(self, workbook_id, sheet_name, range_cell):
+    def get_cell(self, workbook_id, sheet_name, range_cell, session_id):
         """ Get the value of a cell or range from a workbook.
 
         Parameters
@@ -249,7 +276,9 @@ class ExcelOnlineService:
             a list of lists (representing rows and colums) with the values of the cell/s
         """
         headers = {
+            'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + self.access_token,
+            'workbook-session-id': session_id
         }
         url = self.base_url + f"/me/drive/items/{workbook_id}/workbook/worksheets/{sheet_name}/range(address='{range_cell}')".format(
             workbook_id=workbook_id,
@@ -260,7 +289,7 @@ class ExcelOnlineService:
         json_response = json.loads(response.text)
         return json_response['values']
 
-    def update_range(self, workbook_id, sheet_name, range_cell, value_cell):
+    def update_range(self, workbook_id, sheet_name, range_cell, value_cell, session_id):
         """ Get the value of a cell or range from a workbook.
 
         Parameters
@@ -276,9 +305,11 @@ class ExcelOnlineService:
             a list of lists (representing rows and colums) with the new values of the cell/s
         """
         headers = {
+            'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + self.access_token,
+            'workbook-session-id': session_id
         }
-        cells = self.get_cell(workbook_id, sheet_name, range_cell)
+        cells = self.get_cell(workbook_id, sheet_name, range_cell, session_id)
         new_values = []
         for value in cells:
             replaced_cells = [value_cell for x in value]

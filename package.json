@@ -209,7 +209,6 @@
               "es": "ID del Libro",
               "en": "Workbook ID"
             },
-            "remove_vars": true,
             "id": "workbook_id",
             "css": "col-md-12"
           },
@@ -330,7 +329,6 @@
               "es": "ID del libro",
               "en": "Workbook ID"
             },
-            "remove_vars": true,
             "id": "workbook_id",
             "css": "col-md-12"
           },
@@ -345,7 +343,6 @@
               "es": "Nombre de la hoja",
               "en": "Worksheet name"
             },
-            "remove_vars": true,
             "id": "worksheet_name",
             "css": "col-md-12"
           },
@@ -406,7 +403,6 @@
               "es": "ID del Libro",
               "en": "Workbook ID"
             },
-            "remove_vars": true,
             "id": "workbook_id",
             "css": "col-md-12"
           },
@@ -421,7 +417,6 @@
               "es": "Nombre de la hoja",
               "en": "Worksheet name"
             },
-            "remove_vars": true,
             "id": "worksheet_name",
             "css": "col-md-12"
           },
@@ -436,7 +431,6 @@
               "es": "Celda o rango",
               "en": "Cell or range"
             },
-            "remove_vars": true,
             "id": "range_cell",
             "css": "col-md-12"
           },
@@ -497,7 +491,6 @@
               "es": "ID del libro",
               "en": "Workbook ID"
             },
-            "remove_vars": true,
             "id": "workbook_id",
             "css": "col-md-12"
           },
@@ -512,7 +505,6 @@
               "es": "Nombre de la hoja",
               "en": "Worksheet name"
             },
-            "remove_vars": true,
             "id": "worksheet_name",
             "css": "col-md-12"
           },
@@ -527,7 +519,6 @@
               "es": "Celda o rango donde se escribira",
               "en": "Cell or range where it will be written"
             },
-            "remove_vars": true,
             "id": "range_cell",
             "css": "col-md-12"
           },
@@ -542,7 +533,6 @@
               "es": "Valor de la celda o rango",
               "en": "Value of the cell or range"
             },
-            "remove_vars": true,
             "id": "value_cell",
             "css": "col-md-12"
           },

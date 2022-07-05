@@ -26,6 +26,7 @@ Para instalar librerias se debe ingresar por terminal a la carpeta "libs"
 import json
 import sys
 import os
+from time import time, sleep
 
 base_path = tmp_global_obj["basepath"]
 cur_path = base_path + "modules" + os.sep + "ExcelOnline" + os.sep + "libs" + os.sep
@@ -77,6 +78,7 @@ if module == "setCredentials":
                 
             refresh_token = credentials['refresh_token']
             response = excel_online_service.get_old_token(refresh_token)
+            SetVar(res, response)
         except IOError:
             if os.path.exists(path_user):
                 client_instance = _client
@@ -118,6 +120,10 @@ if module == "create_workbook":
     try:
         data_new_workbook = excel_online_service.create_workbook(workbook_name)
         SetVar(res, data_new_workbook)
+        
+        session_id = excel_online_service.create_session(data_new_workbook)
+        a = excel_online_service.close_session(session_id)
+        print(a)
     except Exception as e:
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
@@ -128,8 +134,11 @@ if module == "add_new_worksheet":
     worksheet_name = GetParams("worksheet_name")
     res = GetParams("res")
     try:
-        new_sheet = excel_online_service.add_new_worksheet(workbook_id, worksheet_name)
+        session_id = excel_online_service.create_session(workbook_id)
+        new_sheet = excel_online_service.add_new_worksheet(workbook_id, worksheet_name, session_id)
         SetVar(res, new_sheet)
+        a = excel_online_service.close_session(session_id)
+        print(a)
     except Exception as e:
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
@@ -141,8 +150,11 @@ if module == "get_cell":
     range_cell = GetParams("range_cell")
     res = GetParams("res")
     try:
-        value_cell = excel_online_service.get_cell(workbook_id, worksheet_name, range_cell)
+        session_id = excel_online_service.create_session(workbook_id)
+        value_cell = excel_online_service.get_cell(workbook_id, worksheet_name, range_cell, session_id)
         SetVar(res, value_cell)
+        a = excel_online_service.close_session(session_id)
+        print(a)
     except Exception as e:
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
@@ -155,8 +167,11 @@ if module == "update_range":
     value_cell = GetParams("value_cell")
     res = GetParams("res")
     try:
-        new_value_cell = excel_online_service.update_range(workbook_id, worksheet_name, range_cell, value_cell)
+        session_id = excel_online_service.create_session(workbook_id)
+        new_value_cell = excel_online_service.update_range(workbook_id, worksheet_name, range_cell, value_cell, session_id)
         SetVar(res, new_value_cell)
+        a = excel_online_service.close_session(session_id)
+        print(a)
     except Exception as e:
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
