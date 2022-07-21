@@ -105,10 +105,10 @@
           },
           {
             "type": "input",
-            "placeholder": "res",
+            "placeholder": "connection",
             "title": {
-              "es": "res",
-              "en": "res"
+              "es": "conexion",
+              "en": "connection"
             },
             "description": {
               "es": "Variable donde guardaremos nuestro resultado. Si la conexion es exitosa retornara True, caso contraria sera False",
