@@ -147,7 +147,6 @@ if module == "get_worksheets":
         
         list_worksheets = excel_online_service.get_worksheets(workbook_id)
         SetVar(res, list_worksheets)
-        
         a = excel_online_service.close_session(session_id)
         print(a)
     except Exception as e:
