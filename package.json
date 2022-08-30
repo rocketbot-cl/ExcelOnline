@@ -2,7 +2,7 @@
   "author": "Nicolas Liendro, Juan Siro",
   "description": "Working with Excel Online",
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "1.1",
+  "version": "1.1.0",
   "license": "MIT",
   "homepage": "http://rocketbot.co/",
   "linux": true,
@@ -626,16 +626,16 @@
           },
           {
             "type": "input",
-            "placeholder": "A1:B1",
+            "placeholder": "Cell or Range",
             "title": {
               "es": "Celda o rango",
               "en": "Cell or range",
               "pr": "Célula ou intervalo"
             },
             "description": {
-              "es": "Celda o rango",
-              "en": "Cell or range",
-              "pr": "Célula ou intervalo"
+              "es": "Celda o rango: A1:B2",
+              "en": "Cell or range: A1:B2",
+              "pr": "Célula ou intervalo: A1:B2"
             },
             "id": "range_cell",
             "css": "col-md-12"
@@ -728,32 +728,32 @@
           },
           {
             "type": "input",
-            "placeholder": "A1:B1",
+            "placeholder": "Cell or Range",
             "title": {
               "es": "Celda o rango",
               "en": "Cell or range",
               "pr": "Célula ou intervalo"
             },
             "description": {
-              "es": "Celda o rango donde se escribira",
-              "en": "Cell or range where it will be written",
-              "pr": "Célula ou intervalo onde será escrito"
+              "es": "Celda o rango donde se escribira: A1:B2",
+              "en": "Cell or range where it will be written: A1:B2",
+              "pr": "Célula ou intervalo onde será escrito: A1:B2"
             },
             "id": "range_cell",
             "css": "col-md-12"
           },
           {
             "type": "input",
-            "placeholder": "value_cell",
+            "placeholder": "Value or list of values",
             "title": {
               "es": "Valor celda o rango",
               "en": "Value cell or range",
               "pr": "Valor ou intervalo da célula"
             },
             "description": {
-              "es": "Valor de la celda o rango",
-              "en": "Value of the cell or range",
-              "pr": "Valor ou intervalo da célula"
+              "es": "Valor de la celda o rango: [[1,2],[1,2]]",
+              "en": "Value of the cell or range: [[1,2],[1,2]]",
+              "pr": "Valor ou intervalo da célula: [[1,2],[1,2]]"
             },
             "id": "value_cell",
             "css": "col-md-12"

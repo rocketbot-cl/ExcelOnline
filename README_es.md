@@ -4,13 +4,25 @@
 
 # ExcelOnline
   
-Working with Excel Online  
+Trabajando con Excel Online  
 
 ## Como instalar este módulo
   
 __Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de Rocketbot.  
 
+## Como usar este modulo
 
+Antes de usar este modulo, es necesario registrar tu aplicación en el portal de Azure. 
+
+Registración: 
+
+1. Inicie sesión en el portal de Azure. Luego diríjase al siguiente link: https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade (Registración de Aplicaciones). 
+2. Click en "Nueva Registración". Elija un nombre. 
+3. En "Tipo de Cuentas" elija "Cuentas de cualquier directorio de la organización y cuentas personales de Microsoft (por ejemplo, Skype, Xbox)". 
+4. En "URI de Redirección" selecciones "Web" como plataforma y ponga como URI: __https://localhost/__. Finalmente clieckear en "Registrar". 
+5. Una vez registrada, en la sección "General" encontrara el "ID de Aplicación (Cliente)", escriba/guárdelo, lo necesitara mas adelante. 
+6. Diríjase a "Certificados y Secretos", genere un nuevo "Secreto de Cliente", escriba una descripción y fije la expiración en 24 meses (preferiblemente). Click en "Adherir" y escriba/guarde el "Valor" (NO el "ID de Secreto"), lo necesitara luego junto con el ID de la App. 
+7. Finalmente, vaya a "Permisos de API", clickee en "Adherir permiso", luego en "Microsoft Graph" y seleccione "Permisos delegados". En la barra de búsqueda tipee, "Files.ReadWriteAll", marque con un tilde el casillero y clickee en "Adherir Permisos". 
 
 ## Overview
 
@@ -41,11 +53,6 @@ Obtener valor de celda o rango
 
 9. Escribir/cambiar celda  
 Escribir/cambiar el valor de una celda o rango  
-
-
-
-### Changes
-Mon Dec 27 11:09:45 2021  (refs/stash) On master: !!GitHub_Desktop<master>
 
 ----
 ### OS

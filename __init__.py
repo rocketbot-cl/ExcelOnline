@@ -51,7 +51,9 @@ credentials_filename = 'credentials.json'
 path_user = base_path + "modules" + os.sep + "ExcelOnline" + os.sep + user_filename
 path_credentials = base_path + "modules" + os.sep + "ExcelOnline" + os.sep + credentials_filename
 
-# --------------------------------------------------------------------------------------------------------------------------------------------------------
+"""
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+"""
 if module == "setCredentials":
     client_secret = GetParams("client_secret")
     client_id = GetParams("client_id")
@@ -84,8 +86,10 @@ if module == "setCredentials":
         print("Traceback: ", traceback.format_exc())
         PrintException()
         raise e
-# --------------------------------------------------------------------------------------------------------------------------------------------------------
-# The funcitions used between the line are deprecated. Kept for compatibility issues.
+"""
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+The funcitions used between the line are deprecated. Kept for compatibility issues.
+"""
 
 if module == "getCode":
     # Creates the instance of a client and obtains the authorization code
@@ -135,6 +139,7 @@ if module == "get_xlsx_files":
         files = excel_online_service.get_xlsx_files()
         SetVar(res, files)
     except Exception as e:
+        SetVar(res, False)
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
         raise e
@@ -148,8 +153,9 @@ if module == "get_worksheets":
         list_worksheets = excel_online_service.get_worksheets(workbook_id)
         SetVar(res, list_worksheets)
         a = excel_online_service.close_session(session_id)
-        print(a)
+
     except Exception as e:
+        SetVar(res, False)
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
         raise e
@@ -157,8 +163,9 @@ if module == "get_worksheets":
 if module == "create_workbook":
     res = GetParams("res")
     workbook_name = GetParams("workbook_name")
-    
-    # I creates a temporary .xlsx file in 'tmp' folder
+    """It is not possbile to create a Workbook directly in the cloud an use it rigth after, necessarilly the user must manually open it or wait several ours so the
+    bot can make use of it. So, to avoid that, the workbook is created locally, the upload and finally erased from the computer."""
+    # It creates a temporary .xlsx file in 'tmp' folder
     path_temp = base_path + "modules" + os.sep + "ExcelOnline" + os.sep + "tmp"
     if not os.path.exists(path_temp):
         os.makedirs(path_temp)
@@ -170,11 +177,12 @@ if module == "create_workbook":
     
     try:
         data_new_workbook = excel_online_service.upload_item(temp_file, workbook_name_)
-        SetVar(res, data_new_workbook)
+        SetVar(res, True)
         sleep(15)
         # Once the file is uploaded, it is erased
         os.remove(temp_file)
     except Exception as e:
+        SetVar(res, False)
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
         raise e
@@ -188,7 +196,7 @@ if module == "add_new_worksheet":
         new_sheet = excel_online_service.add_new_worksheet(workbook_id, worksheet_name, session_id)
         SetVar(res, True)
         a = excel_online_service.close_session(session_id)
-        print(a)
+
     except Exception as e:
         SetVar(res, False)
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
@@ -205,8 +213,8 @@ if module == "get_cell":
         value_cell = excel_online_service.get_cell(workbook_id, worksheet_name, range_cell, session_id)
         SetVar(res, value_cell)
         a = excel_online_service.close_session(session_id)
-        print(a)
     except Exception as e:
+        SetVar(res, False)
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
         raise e
@@ -223,7 +231,6 @@ if module == "update_range":
         print(new_value_cell)
         SetVar(res, True)
         a = excel_online_service.close_session(session_id)
-        print(a)
     except Exception as e:
         SetVar(res, False)
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")

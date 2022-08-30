@@ -4,13 +4,26 @@
 
 # ExcelOnline
   
-Working with Excel Online  
+Trabajando con Excel Online  
   
-![banner](C:\Users\jmsir\Desktop\RB\Rocketbot\modules\ExcelOnline\docs\imgs\Banner_ExcelOnline.png)
+![banner](imgs/Banner_ExcelOnline.png)
 ## Como instalar este módulo
   
 __Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de Rocketbot.  
 
+## Como usar este modulo
+
+Antes de usar este modulo, es necesario registrar tu aplicación en el portal de Azure. 
+
+Registración: 
+
+1. Inicie sesión en el portal de Azure. Luego diríjase al siguiente link: https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade (Registración de Aplicaciones). 
+2. Click en "Nueva Registración". Elija un nombre. 
+3. En "Tipo de Cuentas" elija "Cuentas de cualquier directorio de la organización y cuentas personales de Microsoft (por ejemplo, Skype, Xbox)". 
+4. En "URI de Redirección" selecciones "Web" como plataforma y ponga como URI: __https://localhost/__. Finalmente clieckear en "Registrar". 
+5. Una vez registrada, en la sección "General" encontrara el "ID de Aplicación (Cliente)", escriba/guárdelo, lo necesitara mas adelante. 
+6. Diríjase a "Certificados y Secretos", genere un nuevo "Secreto de Cliente", escriba una descripción y fije la expiración en 24 meses (preferiblemente). Click en "Adherir" y escriba/guarde el "Valor" (NO el "ID de Secreto"), lo necesitara luego junto con el ID de la App. 
+7. Finalmente, vaya a "Permisos de API", clickee en "Adherir permiso", luego en "Microsoft Graph" y seleccione "Permisos delegados". En la barra de búsqueda tipee, "Files.ReadWriteAll", marque con un tilde el casillero y clickee en "Adherir Permisos". 
 
 
 ## Descripción de los comandos
@@ -82,7 +95,7 @@ Obtener valor de celda o rango
 | --- | --- | --- |
 |ID del Libro|ID del Libro|FB60B3125CDC0C03!238 (20 digits ID Code)|
 |Nombre de la hoja|Nombre de la hoja|Sheet1|
-|Celda o rango|Celda o rango|A1:B1|
+|Celda o rango|Celda o rango: A1:B2|Cell or Range|
 |Variable a asignar|Variable a asignar. Retorna el valor de la celda o rango|valor_celda|
 
 ### Escribir/cambiar celda
@@ -92,6 +105,6 @@ Escribir/cambiar el valor de una celda o rango
 | --- | --- | --- |
 |ID del Libro|ID del libro|FB60B3125CDC0C03!238 (20 digits ID Code)|
 |Nombre de la hoja|Nombre de la hoja|Sheet1|
-|Celda o rango|Celda o rango donde se escribira|A1:B1|
-|Valor celda o rango|Valor de la celda o rango|value_cell|
+|Celda o rango|Celda o rango donde se escribira: A1:B2|Cell or Range|
+|Valor celda o rango|Valor de la celda o rango: [[1,2],[1,2]]|Value or list of values|
 |Variable a asignar|Variable a asignar. Retorna True si el cambio fue exitoso, caso contraria sera False|nuevo_valor_celda|

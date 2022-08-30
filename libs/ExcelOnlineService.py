@@ -392,7 +392,7 @@ class ExcelOnlineService:
         workboook_id : str
         sheet_name : str
         range_cell: str
-        value_cell: str, int or float
+        value_cell: str, int, float or list
             
         Returns
         -------
@@ -404,20 +404,28 @@ class ExcelOnlineService:
             'Authorization': 'Bearer ' + self.access_token,
             'workbook-session-id': session_id
         }
-        cells = self.get_cell(workbook_id, sheet_name, range_cell, session_id)
-        new_values = []
-        for value in cells:
-            replaced_cells = [value_cell for x in value]
-            new_values.append(replaced_cells)
+        
+        # It takes the input and parses it (from str) into to its type (int, float, list, etc)
+        new_values = eval(value_cell)
+            
         data = {
-            "values": new_values
+            "values" : new_values
         }
-        print(data)
-        url = self.base_url + f"/me/drive/items/{workbook_id}/workbook/worksheets/{sheet_name}/range(address='{range_cell}')".format(
+
+        url = self.base_url + f"me/drive/items/{workbook_id}/workbook/worksheets/{sheet_name}/range(address='{range_cell}')".format(
             workbook_id=workbook_id,
             sheet_name=sheet_name,
             range_cell=range_cell
         )
+        
         response = requests.patch(url, json=data, headers=headers)
         json_response = json.loads(response.text)
-        return json_response['values']
+        
+        # It checks that the modification was done.
+        try:
+            if new_values == json_response['values'] or new_values in json_response['values'][0]:
+                return json_response['values']
+            else:
+                raise ValueError("Check values matrix structure, may not fit given range.")
+        except:
+            raise ValueError("Check values matrix structure, may not fit given range.")
