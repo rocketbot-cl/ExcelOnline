@@ -23,7 +23,7 @@ Registros.
 4. Em "Redirect URI" selecione "Web" como plataforma e defina o URI para: https://localhost/. Por fim, clique em "Registrar"
 5. Uma vez cadastrado, na seção "Visão geral" você encontrará o "ID do aplicativo (cliente)", anote/salve-o, você precisará dele mais tarde.
 6. Vá em "Certificados e segredos", gere um "Novo segredo de cliente", escreva uma descrição e defina o tempo de expração para 24 meses (de preferência). Clique em "Add" e anote/salve o "Value" (NÃO o "Secret ID"), você precisará dele mais tarde junto com o App ID.
-7. Por fim, vá em "Permissões de API", clique em "Adicionar uma permissão", depois em "Microsoft Graph" e selecione "Permissões delegadas". Na barra de pesquisa digite "Files.ReadWriteAll", marque a caixa de seleção e clique em "Adicionar permissões". 
+7. Por fim, vá em "Permissões de API", clique em "Adicionar uma permissão", depois em "Microsoft Graph" e selecione "Permissões delegadas". Na barra de pesquisa digite "Files.ReadWrite.All", marque a caixa de seleção e clique em "Adicionar permissões". 
 
 
 ## Descripción de los comandos
