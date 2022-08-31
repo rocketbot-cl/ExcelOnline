@@ -10,21 +10,19 @@ Working with Excel Online
   
 __Download__ and __install__ the content in 'modules' folder in Rocketbot path  
 
+## How to use this module
 
-## Como usar este modulo
+Before using this module, you must register your app into the Azure Portal.
 
-Para permitir la autenticación, primero debe registrar su aplicación en Azure App 
-Registrations.
+Registration:
 
-1. Inicie sesión en Azure Portal (App Registrations)
-2. Cree una aplicación. Establezca un nombre.
-3. En “Tipos de cuenta” soportados elige "Cuentas de cualquier directorio de la organización y cuentas personales de Microsoft (por ejemplo, Skype, Xbox, Outlook.com)".
-4. Establezca la uri de redirección (Web) : https://localhost y haga click en registrarse.
-5. Anote el ID de la aplicación (cliente). Necesitará este valor.
-6. En "Certificados y secretos", genere un nuevo secreto de cliente. Establezca que la caducidad sea preferiblemente 24 meses. Anote el VALOR del secreto de cliente creado ahora. Se ocultará más adelante. Debe copiar VALOR, no Id de secreto.
-7. En Permisos de API, añadir los siguientes permisos, en permisos delegados y de aplicación: Files.ReadWriteAll
-
-
+1. Sign in to Azure Portal. Then go to the next link: https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade (App Registrations).
+2. Click on "New registration". Choose a name.
+3. In “Supported account types” choose "Accounts in any organizational directory (Any Azure AD directory - Multitenant) and personal Microsoft accounts (e.g. Skype, Xbox)".
+4. In "Redirect URI" select "Web" as a plataform and set the URI to: https://localhost/. Finally click on "Register"
+5. Once registered, on the "Overview" section you will find the "Application (client) ID", write it down/save it, you will need it later.
+6. Go to "Certificates & secrets", generate a "New client secret", write a description and set the expration time to 24 months (preferably). Click on "Add" and write down/save the "Value" (NOT the "Secret ID"), you will need it later together with the App ID.
+7. Finally, go to "API persmissions", click on "Add a permission", then on "Microsoft Graph" and select "Delegated permissions". In the search bar type "Files.ReadWriteAll", mark the checkbox and click on "Add permissions".
 
 ## Overview
 
@@ -32,26 +30,29 @@ Registrations.
 1. Set credentials  
 Set credentials to make available the API
 
-2. Get XLSX files  
-Return a list with all the XLSX files in the folder
+2. Get access code  
+Get access code to create the credentials for the API
 
-3. Get worksheets  
+3. Set credentials  
+Set credentials to make available the API
+
+4. Get XLSX files  
+Return a list with all the XLSX files in the default location
+
+5. Get worksheets  
 Get worksheets from an excel file
 
-4. Create workbook  
-Create a new workbook in default location
+6. Create workbook  
+Create a new workbook in the default location
 
-5. Add new worksheet  
+7. Add new worksheet  
 Add a new worksheet to the workbook
 
-6. Get cell  
-Get cell value
+8. Get cell  
+Get a cell or range values
 
-7. Write cell  
-Write a cell in a sheet  
-
-
-
+9. Write/change cell  
+Write/change a cell or range value  
 
 ----
 ### OS
