@@ -95,8 +95,12 @@ if module == "getCode":
     # Creates the instance of a client and obtains the authorization code
     client_id = GetParams("client_id")
     client_secret = GetParams("client_secret")
+    tenant = GetParams("tenant")
 
-    excel_online_service = ExcelOnlineService(client_id=client_id, client_secret=client_secret, path_user=path_user,
+    if not tenant:
+        tenant = "common"
+    
+    excel_online_service = ExcelOnlineService(client_id=client_id, client_secret=client_secret, tenant=tenant, path_user=path_user,
                     path_credentials=path_credentials)
 
     _client = excel_online_service.get_code()
@@ -112,7 +116,12 @@ if module == "setCredentials_2":
             with open(path_user) as user_file:
                 client_data = json.load(user_file)
             
-            excel_online_service = ExcelOnlineService(client_id=client_data['client_id'], client_secret=client_data['client_secret'], path_user=path_user,
+            if client_data.get('tenant'):
+                tenant = client_data['tenant']
+            else:
+                tenant = "common"
+                            
+            excel_online_service = ExcelOnlineService(client_id=client_data['client_id'], client_secret=client_data['client_secret'], tenant=tenant, path_user=path_user,
                     path_credentials=path_credentials)
                 
             refresh_token = credentials['refresh_token']
@@ -131,39 +140,51 @@ if module == "setCredentials_2":
         SetVar(res, False)
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
+        traceback.print_exc()
         raise e
 
 if module == "get_xlsx_files":
+    drive_id = GetParams("drive_id")
     res = GetParams("res")
     try:
-        files = excel_online_service.get_xlsx_files()
+        if drive_id:
+            files = excel_online_service.get_xlsx_files(drive_id)
+        else:
+            files = excel_online_service.get_xlsx_files()
         SetVar(res, files)
     except Exception as e:
         SetVar(res, False)
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
+        traceback.print_exc()
         raise e
 
 if module == "get_worksheets":
+    drive_id = GetParams("drive_id")
     res = GetParams("res")
     workbook_id = GetParams("workbook_id")
     try:
-        session_id = excel_online_service.create_session(workbook_id)
-        
-        list_worksheets = excel_online_service.get_worksheets(workbook_id)
+        if drive_id:
+            session_id = excel_online_service.create_session(workbook_id, drive_id)
+            list_worksheets = excel_online_service.get_worksheets(workbook_id, drive_id)      
+            excel_online_service.close_session(workbook_id, session_id, drive_id)
+        else:
+            session_id = excel_online_service.create_session(workbook_id)
+            list_worksheets = excel_online_service.get_worksheets(workbook_id)
+            excel_online_service.close_session(workbook_id, session_id)
         SetVar(res, list_worksheets)
-        a = excel_online_service.close_session(session_id)
-
     except Exception as e:
         SetVar(res, False)
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
+        traceback.print_exc()
         raise e
 
 if module == "create_workbook":
+    drive_id = GetParams("drive_id")
     res = GetParams("res")
     workbook_name = GetParams("workbook_name")
-    """It is not possbile to create a Workbook directly in the cloud an use it rigth after, necessarilly the user must manually open it or wait several ours so the
+    """It is not possible to create a Workbook directly in the cloud an use it right after, necessarily the user must manually open it or wait several ours so the
     bot can make use of it. So, to avoid that, the workbook is created locally, the upload and finally erased from the computer."""
     # It creates a temporary .xlsx file in 'tmp' folder
     path_temp = base_path + "modules" + os.sep + "ExcelOnline" + os.sep + "tmp"
@@ -176,63 +197,110 @@ if module == "create_workbook":
     wb.save(temp_file)
     
     try:
-        data_new_workbook = excel_online_service.upload_item(temp_file, workbook_name_)
+        if drive_id:
+            data_new_workbook = excel_online_service.upload_item(temp_file, workbook_name_, drive_id)
+        else:
+            data_new_workbook = excel_online_service.upload_item(temp_file, workbook_name_)
         SetVar(res, True)
-        sleep(15)
+        sleep(20)
         # Once the file is uploaded, it is erased
         os.remove(temp_file)
     except Exception as e:
         SetVar(res, False)
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
+        traceback.print_exc()
         raise e
 
 if module == "add_new_worksheet":
+    drive_id = GetParams("drive_id")
     workbook_id = GetParams("workbook_id")
     worksheet_name = GetParams("worksheet_name")
     res = GetParams("res")
     try:
-        session_id = excel_online_service.create_session(workbook_id)
-        new_sheet = excel_online_service.add_new_worksheet(workbook_id, worksheet_name, session_id)
+        if drive_id:
+            session_id = excel_online_service.create_session(workbook_id, drive_id)
+            new_sheet = excel_online_service.add_new_worksheet(workbook_id, worksheet_name, session_id, drive_id)
+            excel_online_service.close_session(workbook_id, session_id, drive_id)
+        else:
+            session_id = excel_online_service.create_session(workbook_id)
+            new_sheet = excel_online_service.add_new_worksheet(workbook_id, worksheet_name, session_id)
+            excel_online_service.close_session(workbook_id, session_id)        
         SetVar(res, True)
-        a = excel_online_service.close_session(session_id)
-
     except Exception as e:
         SetVar(res, False)
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
+        traceback.print_exc()
         raise e
 
 if module == "get_cell":
+    drive_id = GetParams("drive_id")
     workbook_id = GetParams("workbook_id")
     worksheet_name = GetParams("worksheet_name")
     range_cell = GetParams("range_cell")
     res = GetParams("res")
     try:
-        session_id = excel_online_service.create_session(workbook_id)
-        value_cell = excel_online_service.get_cell(workbook_id, worksheet_name, range_cell, session_id)
+        if drive_id:
+            session_id = excel_online_service.create_session(workbook_id, drive_id)
+            value_cell = excel_online_service.get_cell(workbook_id, worksheet_name, range_cell, session_id, drive_id)
+            excel_online_service.close_session(workbook_id, session_id, drive_id)
+        else:
+            session_id = excel_online_service.create_session(workbook_id)
+            value_cell = excel_online_service.get_cell(workbook_id, worksheet_name, range_cell, session_id)
+            excel_online_service.close_session(workbook_id, session_id)
         SetVar(res, value_cell)
-        a = excel_online_service.close_session(session_id)
     except Exception as e:
         SetVar(res, False)
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
+        traceback.print_exc()
         raise e
 
 if module == "update_range":
+    drive_id = GetParams("drive_id")
     workbook_id = GetParams("workbook_id")
     worksheet_name = GetParams("worksheet_name")
     range_cell = GetParams("range_cell")
     value_cell = GetParams("value_cell")
     res = GetParams("res")
     try:
-        session_id = excel_online_service.create_session(workbook_id)
-        new_value_cell = excel_online_service.update_range(workbook_id, worksheet_name, range_cell, value_cell, session_id)
-        print(new_value_cell)
+        if drive_id:
+            session_id = excel_online_service.create_session(workbook_id, drive_id)
+            new_value_cell = excel_online_service.update_range(workbook_id, worksheet_name, range_cell, value_cell, session_id, drive_id)
+            excel_online_service.close_session(workbook_id, session_id, drive_id)
+        else:
+            session_id = excel_online_service.create_session(workbook_id)
+            new_value_cell = excel_online_service.update_range(workbook_id, worksheet_name, range_cell, value_cell, session_id)
+            excel_online_service.close_session(workbook_id, session_id)
         SetVar(res, True)
-        a = excel_online_service.close_session(session_id)
     except Exception as e:
         SetVar(res, False)
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
+        traceback.print_exc()
+        raise e
+    
+if module == "write_formula":
+    drive_id = GetParams("drive_id")
+    workbook_id = GetParams("workbook_id")
+    worksheet_name = GetParams("worksheet_name")
+    range_cell = GetParams("range_cell")
+    formula = GetParams("formula")
+    res = GetParams("res")
+    try:
+        if drive_id:
+            session_id = excel_online_service.create_session(workbook_id, drive_id)
+            new_value_cell = excel_online_service.write_formula(workbook_id, worksheet_name, range_cell, formula, session_id, drive_id)
+            excel_online_service.close_session(workbook_id, session_id, drive_id)
+        else:
+            session_id = excel_online_service.create_session(workbook_id)
+            new_value_cell = excel_online_service.write_formula(workbook_id, worksheet_name, range_cell, formula, session_id)
+            excel_online_service.close_session(workbook_id, session_id)
+        SetVar(res, True)
+    except Exception as e:
+        SetVar(res, False)
+        print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
+        PrintException()
+        traceback.print_exc()
         raise e

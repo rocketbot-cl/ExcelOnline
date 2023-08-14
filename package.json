@@ -2,9 +2,9 @@
   "author": "Nicolas Liendro, Juan Siro",
   "description": "Working with Excel Online",
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "1.1.0",
+  "version": "1.3.2",
   "license": "MIT",
-  "homepage": "http://rocketbot.co/",
+  "homepage": "http://rocketbot.com/",
   "linux": true,
   "windows": true,
   "mac": true,
@@ -70,6 +70,27 @@
               "pr": "Valor secreto do cliente da API"
             },
             "id": "client_secret",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "common",
+            "title": {
+              "es": "tenant",
+              "en": "tenant",
+              "pr": "tenant"
+            },
+            "description": {
+              "es": "Tenant ID de la API",
+              "en": "API Tenant ID",
+              "pr": "Tenant ID da API"
+            },
+            "help": {
+              "es": "Si no se especifica, por defecto se usará 'common'",
+              "en": "If not specified, by default will use 'common'",
+              "pr": "Se não for especificado, por padrão usará 'common'"
+            },
+            "id": "tenant",
             "css": "col-md-12"
           }
         ]
@@ -140,7 +161,7 @@
             },
             "remove_vars": true,
             "id": "res",
-            "css": "col-md-12"
+            "css": "col-md-6"
           }
         ]
       },
@@ -181,6 +202,22 @@
         "inputs": [
           {
             "type": "input",
+            "placeholder": "b!4Zasr9LvqUiwt4OZ8irYdG3gm207yiJPkTu3c6KrXmFKVLpG3_FZTrGY-Gxn974J",
+            "title": {
+              "es": "ID de Disco Compartido (Opcional)",
+              "en": "Shared Drive ID (Optional)",
+              "pr": "ID do disco compartilhado (Opcional)"
+            },
+            "help": {
+              "es": "Utilizar cuando los archivos a listar se encuentren en una carpeta compartida.",
+              "en": "Use when the files to be listed are in a shared folder.",
+              "pr": "Use quando os arquivos a serem listados estiverem em uma pasta compartilhada."
+            },
+            "id": "drive_id",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
             "placeholder": "lista_archivos",
             "title": {
               "es": "Variable a asignar",
@@ -194,7 +231,7 @@
             },
             "remove_vars": true,
             "id": "res",
-            "css": "col-md-12"
+            "css": "col-md-6"
           }
         ]
       },
@@ -235,6 +272,22 @@
         "inputs": [
           {
             "type": "input",
+            "placeholder": "b!4Zasr9LvqUiwt4OZ8irYdG3gm207yiJPkTu3c6KrXmFKVLpG3_FZTrGY-Gxn974J",
+            "title": {
+              "es": "ID de Disco Compartido (Opcional)",
+              "en": "Shared Drive ID (Optional)",
+              "pr": "ID do disco compartilhado (Opcional)"
+            },
+            "help": {
+              "es": "Utilizar cuando el archivo se encuentre en una carpeta compartida.",
+              "en": "Use when the file is in a shared folder.",
+              "pr": "Use quando o arquivo estiver em uma pasta compartilhada."
+            },
+            "id": "drive_id",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
             "placeholder": "FB60B3125CDC0C03!238 (20 digits ID Code)",
             "title": {
               "es": "ID del Libro",
@@ -264,7 +317,7 @@
             },
             "remove_vars": true,
             "id": "res",
-            "css": "col-md-12"
+            "css": "col-md-6"
           }
         ]
       },
@@ -305,6 +358,22 @@
         "inputs": [
           {
             "type": "input",
+            "placeholder": "b!4Zasr9LvqUiwt4OZ8irYdG3gm207yiJPkTu3c6KrXmFKVLpG3_FZTrGY-Gxn974J",
+            "title": {
+              "es": "ID de Disco Compartido (Opcional)",
+              "en": "Shared Drive ID (Optional)",
+              "pr": "ID do disco compartilhado (Opcional)"
+            },
+            "help": {
+              "es": "Utilizar cuando el archivo debe crearse en una carpeta compartida.",
+              "en": "Use when the file must be created in a shared folder.",
+              "pr": "Use quando o arquivo deve ser criado em uma pasta compartilhada."
+            },
+            "id": "drive_id",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
             "placeholder": "Libro Nuevo",
             "title": {
               "es": "Nombre del libro",
@@ -317,7 +386,7 @@
               "pr": "Nome do livro"
             },
             "id": "workbook_name",
-            "css": "col-md-12"
+            "css": "col-md-6"
           },
           {
             "type": "input",
@@ -334,7 +403,7 @@
             },
             "remove_vars": true,
             "id": "res",
-            "css": "col-md-12"
+            "css": "col-md-6"
           }
         ]
       },
@@ -375,6 +444,22 @@
         "inputs": [
           {
             "type": "input",
+            "placeholder": "b!4Zasr9LvqUiwt4OZ8irYdG3gm207yiJPkTu3c6KrXmFKVLpG3_FZTrGY-Gxn974J",
+            "title": {
+              "es": "ID de Disco Compartido (Opcional)",
+              "en": "Shared Drive ID (Optional)",
+              "pr": "ID do disco compartilhado (Opcional)"
+            },
+            "help": {
+              "es": "Utilizar cuando el archivo se encuentre en una carpeta compartida.",
+              "en": "Use when the file is in a shared folder.",
+              "pr": "Use quando o arquivo estiver em uma pasta compartilhada."
+            },
+            "id": "drive_id",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
             "placeholder": "FB60B3125CDC0C03!238 (20 digits ID Code)",
             "title": {
               "es": "ID del Libro",
@@ -403,7 +488,7 @@
               "pr": "Nome da planilha"
             },
             "id": "worksheet_name",
-            "css": "col-md-12"
+            "css": "col-md-6"
           },
           {
             "type": "input",
@@ -420,7 +505,7 @@
             },
             "remove_vars": true,
             "id": "res",
-            "css": "col-md-12"
+            "css": "col-md-6"
           }
         ]
       },
@@ -461,6 +546,22 @@
         "inputs": [
           {
             "type": "input",
+            "placeholder": "b!4Zasr9LvqUiwt4OZ8irYdG3gm207yiJPkTu3c6KrXmFKVLpG3_FZTrGY-Gxn974J",
+            "title": {
+              "es": "ID de Disco Compartido (Opcional)",
+              "en": "Shared Drive ID (Optional)",
+              "pr": "ID do disco compartilhado (Opcional)"
+            },
+            "help": {
+              "es": "Utilizar cuando el archivo se encuentre en una carpeta compartida.",
+              "en": "Use when the file is in a shared folder.",
+              "pr": "Use quando o arquivo estiver em uma pasta compartilhada."
+            },
+            "id": "drive_id",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
             "placeholder": "FB60B3125CDC0C03!238 (20 digits ID Code)",
             "title": {
               "es": "ID del Libro",
@@ -489,7 +590,7 @@
               "pr": "Nome da planilha"
             },
             "id": "worksheet_name",
-            "css": "col-md-12"
+            "css": "col-md-6"
           },
           {
             "type": "input",
@@ -505,7 +606,7 @@
               "pr": "Célula ou intervalo: A1:B2"
             },
             "id": "range_cell",
-            "css": "col-md-12"
+            "css": "col-md-6"
           },
           {
             "type": "input",
@@ -563,6 +664,22 @@
         "inputs": [
           {
             "type": "input",
+            "placeholder": "b!4Zasr9LvqUiwt4OZ8irYdG3gm207yiJPkTu3c6KrXmFKVLpG3_FZTrGY-Gxn974J",
+            "title": {
+              "es": "ID de Disco Compartido (Opcional)",
+              "en": "Shared Drive ID (Optional)",
+              "pr": "ID do disco compartilhado (Opcional)"
+            },
+            "help": {
+              "es": "Utilizar cuando el archivo se encuentre en una carpeta compartida.",
+              "en": "Use when the file is in a shared folder.",
+              "pr": "Use quando o arquivo estiver em uma pasta compartilhada."
+            },
+            "id": "drive_id",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
             "placeholder": "FB60B3125CDC0C03!238 (20 digits ID Code)",
             "title": {
               "es": "ID del Libro",
@@ -591,7 +708,7 @@
               "pr": "Nome da planilha"
             },
             "id": "worksheet_name",
-            "css": "col-md-12"
+            "css": "col-md-6"
           },
           {
             "type": "input",
@@ -607,7 +724,7 @@
               "pr": "Célula ou intervalo onde será escrito: A1:B2"
             },
             "id": "range_cell",
-            "css": "col-md-12"
+            "css": "col-md-6"
           },
           {
             "type": "input",
@@ -623,6 +740,140 @@
               "pr": "Valor ou intervalo da célula: [[1,2],[1,2]]"
             },
             "id": "value_cell",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": "nuevo_valor_celda",
+            "title": {
+              "es": "Variable a asignar",
+              "en": "Variable to assign",
+              "pr": "Variável a atribuir"
+            },
+            "description": {
+              "es": "Variable a asignar. Retorna True si el cambio fue exitoso, caso contraria sera False",
+              "en": "Variable to assign. Returns True if the change was successful, otherwise it will be False",
+              "pr": "Variável a atribuir. Retorna True se a alteração foi bem sucedida, caso contrário será False"
+            },
+            "remove_vars": true,
+            "id": "res",
+            "css": "col-md-6"
+          }
+        ]
+      },
+      "video_youtube": "",
+      "icon": "data:image/png;base64,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",
+      "module": "update_range",
+      "module_name": "ExcelOnline",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": true,
+      "windows": true,
+      "mac": true,
+      "docker": false
+    },
+    {
+      "en": {
+        "title": "Write formula",
+        "description": "Write a formula into a cell or range",
+        "title_options": "Select Option",
+        "options": null
+      },
+      "es": {
+        "title": "Escribir formula",
+        "description": "Escribir una fórmula en una celda o rango",
+        "title_options": "Seleccione una opción",
+        "options": null
+      },
+      "pr": {
+        "title": "Escrever fórmula",
+        "description": "Escrever uma fórmula em uma célula ou intervalo",
+        "title_options": "Selecione uma opção",
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": "b!4Zasr9LvqUiwt4OZ8irYdG3gm207yiJPkTu3c6KrXmFKVLpG3_FZTrGY-Gxn974J",
+            "title": {
+              "es": "ID de Disco Compartido (Opcional)",
+              "en": "Shared Drive ID (Optional)",
+              "pr": "ID do disco compartilhado (Opcional)"
+            },
+            "help": {
+              "es": "Utilizar cuando el archivo se encuentre en una carpeta compartida.",
+              "en": "Use when the file is in a shared folder.",
+              "pr": "Use quando o arquivo estiver em uma pasta compartilhada."
+            },
+            "id": "drive_id",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "FB60B3125CDC0C03!238 (20 digits ID Code)",
+            "title": {
+              "es": "ID del Libro",
+              "en": "Workbook ID",
+              "pr": "ID do livro"
+            },
+            "description": {
+              "es": "ID del libro",
+              "en": "Workbook ID",
+              "pr": "ID do livro"
+            },
+            "id": "workbook_id",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "Sheet1",
+            "title": {
+              "es": "Nombre de la hoja",
+              "en": "Worksheet name",
+              "pr": "Nome da planilha"
+            },
+            "description": {
+              "es": "Nombre de la hoja",
+              "en": "Worksheet name",
+              "pr": "Nome da planilha"
+            },
+            "id": "worksheet_name",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": "Cell or Range",
+            "title": {
+              "es": "Celda o rango",
+              "en": "Cell or range",
+              "pr": "Célula ou intervalo"
+            },
+            "description": {
+              "es": "Celda o rango donde se escribira: A1:B2",
+              "en": "Cell or range where it will be written: A1:B2",
+              "pr": "Célula ou intervalo onde será escrito: A1:B2"
+            },
+            "id": "range_cell",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": "=sum(2;2)",
+            "title": {
+              "es": "Formula",
+              "en": "Formula",
+              "pr": "Fórmula"
+            },
+            "description": {
+              "es": "Formula en formato Excel",
+              "en": "Excel format Formula",
+              "pr": "Fórmula em formato Excel"
+            },
+            "id": "formula",
             "css": "col-md-12"
           },
           {
@@ -640,13 +891,13 @@
             },
             "remove_vars": true,
             "id": "res",
-            "css": "col-md-12"
+            "css": "col-md-6"
           }
         ]
       },
       "video_youtube": "",
       "icon": "data:image/png;base64,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",
-      "module": "update_range",
+      "module": "write_formula",
       "module_name": "ExcelOnline",
       "visible": true,
       "options": false,
