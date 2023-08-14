@@ -1,6 +1,11 @@
 {
   "author": "Nicolas Liendro, Juan Siro",
   "description": "Working with Excel Online",
+  "desc_lang": {
+    "en": "Create, read, update and delete data from Excel files stored into OneDrive",
+    "es": "Cree, lea, actualice y elimine datos de archivos de Excel almacenados en OneDrive",
+    "pr": "Crie, leia, atualize e exclua dados de arquivos do Excel armazenados no OneDrive"
+  },
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
   "version": "1.3.2",
   "license": "MIT",
