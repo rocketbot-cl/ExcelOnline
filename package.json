@@ -1,7 +1,7 @@
 {
   "author": "Nicolas Liendro, Juan Siro",
   "description": "Working with Excel Online",
-  "desc_lang": {
+  "description_lang": {
     "en": "Create, read, update and delete data from Excel files stored into OneDrive",
     "es": "Cree, lea, actualice y elimine datos de archivos de Excel almacenados en OneDrive",
     "pr": "Crie, leia, atualize e exclua dados de arquivos do Excel armazenados no OneDrive"

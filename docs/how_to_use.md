@@ -3,46 +3,54 @@
 
 ## How to use this module
 
-Before using this module, you must register your app into the Azure Portal.
+Before using this module, you need to register your app in the Azure App Registrations portal.
 
-Registration:
-
-1. Sign in to Azure Portal. Then go to the next link: https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade (App Registrations).
-2. Click on "New registration". Choose a name.
-3. In “Supported account types” choose "Accounts in any organizational directory (Any Azure AD directory - Multitenant) and personal Microsoft accounts (e.g. Skype, Xbox)".
-4. In "Redirect URI" select "Web" as a plataform and set the URI to: https://localhost/. Finally click on "Register"
-5. Once registered, on the "Overview" section you will find the "Application (client) ID", write it down/save it, you will need it later.
-6. Go to "Certificates & secrets", generate a "New client secret", write a description and set the expration time to 24 months (preferably). Click on "Add" and write down/save the "Value" (NOT the "Secret ID"), you will need it later together with the App ID.
-7. Finally, go to "API persmissions", click on "Add a permission", then on "Microsoft Graph" and select "Delegated permissions". In the search bar type "Files.ReadWriteAll", mark the checkbox and click on "Add permissions".
+1. Sign in to the Azure portal and search for the Azure Active Directory service.
+2. On the left side menu, get into "App Registrations".
+3. Select "New record".
+4. Under “Compatible account types” supported choose:
+    - "Accounts in any organizational directory (any Azure AD directory: multi-tenant) and personal Microsoft accounts (such as Skype or Xbox)" for this case use Tenant ID = **common**.
+    - "Only accounts from this organizational directory (only this account: single tenant) for this case use application-specific **Tenant ID**.
+    - "Personal Microsoft accounts only" for this case use use Tenant ID = **consumers**.
+5. In "Redirect URI" select "Web" as a plataform and set the URI to: https://localhost/. Finally click on "Register"
+6. Copy the application (client) ID. You will need this value.
+7. Under "Certificates and secrets", generate a new client secret. Set the expiration (preferably 24 months). Copy the **VALUE** of the created client secret (**__NOT the Secret ID__**). It will hide after a few minutes.
+8. Finally, go to "API persmissions", click "Add a permission", select "Microsoft Graph", then "Delegated permissions". In the search bar type "Files.ReadWriteAll", mark the checkbox and click on "Add permissions".
 
 ---
 
 ## Como usar este modulo
 
-Antes de usar este modulo, es necesario registrar tu aplicación en el portal de Azure. 
+Antes de usar este módulo, es necesario registrar tu aplicación en el portal de Azure App Registrations. 
 
-Registración: 
-
-1. Inicie sesión en el portal de Azure. Luego diríjase al siguiente link: https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade (Registración de Aplicaciones). 
-2. Click en "Nueva Registración". Elija un nombre. 
-3. En "Tipo de Cuentas" elija "Cuentas de cualquier directorio de la organización y cuentas personales de Microsoft (por ejemplo, Skype, Xbox)". 
-4. En "URI de Redirección" selecciones "Web" como plataforma y ponga como URI: __https://localhost/__. Finalmente clieckear en "Registrar". 
-5. Una vez registrada, en la sección "General" encontrara el "ID de Aplicación (Cliente)", escriba/guárdelo, lo necesitara mas adelante. 
-6. Diríjase a "Certificados y Secretos", genere un nuevo "Secreto de Cliente", escriba una descripción y fije la expiración en 24 meses (preferiblemente). Click en "Adherir" y escriba/guarde el "Valor" (NO el "ID de Secreto"), lo necesitara luego junto con el ID de la App. 
-7. Finalmente, vaya a "Permisos de API", clickee en "Adherir permiso", luego en "Microsoft Graph" y seleccione "Permisos delegados". En la barra de búsqueda tipee, "Files.ReadWriteAll", marque con un tilde el casillero y clickee en "Adherir Permisos". 
+1. Inicie sesión en Azure Portal y busque el servicio Azure Active Directory.
+2. En el menu en el lateral izquierdo, ingrese a "Registros de Aplicaciones".
+3. Seleccione "Nuevo registro".
+4. En “Tipos de cuenta compatibles” soportados elija:
+    - "Cuentas en cualquier directorio organizativo (cualquier directorio de Azure AD: multiinquilino) y cuentas de Microsoft personales (como Skype o Xbox)" para este caso utilizar  ID Inquilino = **common**.
+    - "Solo cuentas de este directorio organizativo (solo esta cuenta: inquilino único) para este caso utilizar **ID Inquilino** especifico de la aplicación.
+    - "Solo cuentas personales de Microsoft " for this case use use Tenant ID = **consumers**.
+5. En "URI de Redirección" selecciones "Web" como plataforma y ponga como URI: __https://localhost/__. Finalmente clieckear en "Registrar". 
+6. Copie el ID de la aplicación (cliente). Necesitará este valor. 
+7. Dentro de "Certificados y secretos", genere un nuevo secreto de cliente. Establezca la caducidad (preferiblemente 24 meses). Copie el **VALOR** del secreto de cliente creado (**__NO el ID de Secreto__**). El mismo se ocultará al cabo de unos minutos.
+8. Finalmente, vaya a "Permisos de API", haga click en "Agregar un permiso", seleccione "Microsoft Graph", luego "Permisos delegados". En la barra de búsqueda tipee, "Files.ReadWriteAll", marque con un tilde el casillero y clickee en "Adherir Permisos". 
 
 ---
 
 ## Como usar este módulo
 
-Antes de usar este módulo, você deve registrar seu aplicativo no Portal do Azure.
+## Como usar este módulo
 
-Cadastro:
+Antes de usar este módulo, você precisa registrar seu aplicativo no portal de Registros de Aplicativo do Azure.
 
-1. Entre no Portal do Azure. Em seguida, vá para o próximo link: https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade (Registros de aplicativos).
-2. Clique em "Novo registro". Escolha um nome.
-3. Em "Tipos de conta compatíveis", escolha "Contas em qualquer diretório organizacional (qualquer diretório do Azure AD - Multilocatário) e contas pessoais da Microsoft (por exemplo, Skype, Xbox)".
-4. Em "Redirect URI" selecione "Web" como plataforma e defina o URI para: https://localhost/. Por fim, clique em "Registrar"
-5. Uma vez cadastrado, na seção "Visão geral" você encontrará o "ID do aplicativo (cliente)", anote/salve-o, você precisará dele mais tarde.
-6. Vá em "Certificados e segredos", gere um "Novo segredo de cliente", escreva uma descrição e defina o tempo de expração para 24 meses (de preferência). Clique em "Add" e anote/salve o "Value" (NÃO o "Secret ID"), você precisará dele mais tarde junto com o App ID.
-7. Por fim, vá em "Permissões de API", clique em "Adicionar uma permissão", depois em "Microsoft Graph" e selecione "Permissões delegadas". Na barra de pesquisa digite "Files.ReadWriteAll", marque a caixa de seleção e clique em "Adicionar permissões".
+1. Entre no portal do Azure e procure o serviço Azure Active Directory.
+2. No menu do lado esquerdo, entre em "Registros de aplicativos".
+3. Selecione "Novo registro".
+4. Em "Tipos de conta compatíveis" suportados, escolha:
+    - "Contas em qualquer diretório organizacional (qualquer diretório do Azure AD: multilocatário) e contas pessoais da Microsoft (como Skype ou Xbox)" para este caso, use ID de locatário = **common**.
+    - "Somente contas deste diretório organizacional (somente esta conta: locatário único) para este caso usam **ID de locatário específico** do aplicativo.
+    - "Somente contas pessoais da Microsoft" para este caso, use ID do locatário = **consumidores**.
+5. Em "Redirect URI" selecione "Web" como plataforma e defina o URI para: https://localhost/. Por fim, clique em "Registrar"
+6. Copie o ID do aplicativo (cliente). Você vai precisar desse valor.
+7. Em "Certificados e segredos", gere um novo segredo do cliente. Defina a validade (de preferência 24 meses). Copie o **VALUE** do segredo do cliente criado (**__NÃO o ID do segredo__**). Ele vai esconder depois de alguns minutos.
+8. Por fim, vá em "Permissões de API", clique em "Adicionar uma permissão", selecione "Microsoft Graph", depois em "Permissões delegadas". Na barra de pesquisa digite "Files.ReadWriteAll", marque a caixa de seleção e clique em "Adicionar permissões".
