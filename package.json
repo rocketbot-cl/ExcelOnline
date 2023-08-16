@@ -867,7 +867,7 @@
           },
           {
             "type": "input",
-            "placeholder": "=sum(2;2)",
+            "placeholder": "=sum(2,2)",
             "title": {
               "es": "Formula",
               "en": "Formula",
