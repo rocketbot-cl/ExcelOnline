@@ -1,16 +1,19 @@
 from http import client
 from re import A
 import requests
-import json
 import os
 import msal
+
+import json
 import webbrowser
 class ExcelOnlineService:
     
-    def __init__(self, *, client_id, client_secret, tenant=None, redirect_uri= None, path_user=None, path_credentials):
+    def __init__(self, *, client_id, client_secret, tenant, redirect_uri= None, path_user=None, path_credentials):
         self.client_id = client_id
         self.client_secret = client_secret
-        self.authority_url = 'https://login.microsoftonline.com/consumers/'
+        self.tenant = tenant
+        self.authority_url = f'https://login.microsoftonline.com/{self.tenant}/' # https://learn.microsoft.com/en-us/azure/active-directory/develop/msal-client-application-configuration 
+                                                                         # I leave this here just in case is needed a Single Tenant configuration at some moment
         self.scopes = ['User.Read', 'Files.ReadWrite.All']
         self.access_token = None
         self.refresh_token = None
@@ -19,7 +22,6 @@ class ExcelOnlineService:
         self.base_url = 'https://graph.microsoft.com/v1.0/'
         
         # Deprecated parameters
-        self.tenant = tenant
         self.redirect_uri = redirect_uri
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -116,7 +118,7 @@ class ExcelOnlineService:
             webbrowser.open(authorization_request_url, new=True)
             
             with open(self.path_user, 'w') as userfile:
-                user_info = {'client_id': self.client_id, 'client_secret': self.client_secret}
+                user_info = {'client_id': self.client_id, 'client_secret': self.client_secret, 'tenant': self.tenant}
                 json.dump(user_info, userfile)
             return client_instance
         
@@ -152,8 +154,6 @@ class ExcelOnlineService:
                 code = auth_code,
                 scopes = self.scopes
             )
-            print(access_token)
-            print(type(access_token))
             json_response = access_token
             self.access_token = json_response['access_token']
             self.refresh_token = json_response['refresh_token']
@@ -221,7 +221,7 @@ class ExcelOnlineService:
             print(e)
             raise e
 
-    def get_xlsx_files(self):
+    def get_xlsx_files(self, folder_id = 'root', drive_id = None):
         """ Get the '.xlsx' files in the directory.
             
         Returns
@@ -232,9 +232,17 @@ class ExcelOnlineService:
         headers = {
             'Authorization': 'Bearer ' + self.access_token
         }
-        url = self.base_url + "me/drive/root/search(q='.xlsx')?select=name,id,webUrl"
+        if drive_id:
+            if folder_id != 'root':
+                url = self.base_url + f"/drives/{drive_id}/items/{folder_id}/search(q='.xlsx')?select=name,id,webUrl"
+            else:
+                url = self.base_url + f"/drives/{drive_id}/search(q='.xlsx')?select=name,id,webUrl"
+        else:
+            url = self.base_url + f"me/drive/items/{folder_id}/search(q='.xlsx')?select=name,id,webUrl"
+            
         response = requests.get(url, headers=headers)
         json_response = json.loads(response.text)
+        print(json_response)
         clean_data = []
         for xlsx in json_response['value']:
             for k in ['@odata.type','webUrl']:
@@ -242,7 +250,7 @@ class ExcelOnlineService:
             clean_data.append(xlsx)
         return clean_data
 
-    def get_worksheets(self, workbook_id):
+    def get_worksheets(self, workbook_id, drive_id = None):
         """ Get the worksheets of a workbook.
 
         Parameters
@@ -257,7 +265,10 @@ class ExcelOnlineService:
         headers = {
             'Authorization': 'Bearer ' + self.access_token
         }
-        url = self.base_url + f"/me/drive/items/{workbook_id}/workbook/worksheets".format(workbook_id=workbook_id)
+        if drive_id:
+            url = self.base_url + f"/drives/{drive_id}/items/{workbook_id}/workbook/worksheets"
+        else:
+            url = self.base_url + f"/me/drive/items/{workbook_id}/workbook/worksheets"
         response = requests.get(url, headers=headers)
         json_response = json.loads(response.text)
         sheets = []
@@ -286,7 +297,7 @@ class ExcelOnlineService:
     # #     json_response = json.loads(response.text)
     # #     return json_response['id']
     
-    def upload_item(self, file_path, filename):
+    def upload_item(self, file_path, filename, drive_id = None, folder_id = None):
         headers = {
             'Authorization': 'Bearer ' + self.access_token
         }
@@ -294,42 +305,48 @@ class ExcelOnlineService:
         # Open file in binary format for reading to upload it
         with open(file_path, "rb") as file:
             fileHandle = file.read()
-
-        url = "https://graph.microsoft.com/v1.0/me/drive/items/{drive_id}:/{filename}:/content".format(
-            drive_id="root", filename=filename)
+            
+        if drive_id and folder_id:
+            url = self.base_url + f"/drives/{drive_id}/items/{folder_id}:/{filename}:/content"
+        else:
+            url = self.base_url + f"/me/drive/items/root/{filename}:/content"
+            
         response = requests.put(url, data=fileHandle, headers=headers)
         json_response = json.loads(response.text)
-        print(response)
-        print(json_response)
+
         return json_response['id']
        
-    def create_session(self, id):
+    def create_session(self, id, drive_id = None):
         headers = {
             'Authorization': 'Bearer ' + self.access_token
         }
         session_params = {
             "persistChanges": True
         }
-        url = "https://graph.microsoft.com/v1.0/me/drive/items/{id}/workbook/createSession".format(id=id)
+        if drive_id:
+            url = self.base_url + f"/drives/{drive_id}/items/{id}/workbook/createSession"
+        else:
+            url = self.base_url + f"/me/drive/items/{id}/workbook/createSession"
         response = requests.post(url, json=session_params, headers=headers)
         json_response = json.loads(response.text)
-        print(response)
         print(json_response)
         return json_response['id']
     
-    def close_session(self, session_id):
+    def close_session(self, id, session_id, drive_id = None):
         headers = {
-            'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + self.access_token,
             'workbook-session-id': session_id
         }
-        url = "https://graph.microsoft.com/v1.0/me/drive/items/{id}/workbook/closeSession".format(id=id)
+        if drive_id:
+            url = self.base_url + f"/drives/{drive_id}/items/{id}/workbook/closeSession"
+        else:
+            url = self.base_url + f"/me/drive/items/{id}/workbook/closeSession"
         
         response = requests.post(url, headers=headers)
-        json_response = json.loads(response.text)
-        return json_response
 
-    def add_new_worksheet(self, workbook_id, sheet_name, session_id):
+        return response
+
+    def add_new_worksheet(self, workbook_id, sheet_name, session_id, drive_id = None):
         """ Add a new worksheets in a workbook.
 
         Parameters
@@ -350,13 +367,16 @@ class ExcelOnlineService:
         data = {
             "name": sheet_name
         }
-        url = self.base_url + f"/me/drive/items/{workbook_id}/workbook/worksheets/".format(
-            workbook_id=workbook_id)
+        if drive_id:
+            url = self.base_url + f"/drives/{drive_id}/items/{workbook_id}/workbook/worksheets/"
+        else:
+            url = self.base_url + f"/me/drive/items/{workbook_id}/workbook/worksheets/"
+            
         response = requests.post(url, json=data, headers=headers)
         json_response = json.loads(response.text)
         return json_response['name']
 
-    def get_cell(self, workbook_id, sheet_name, range_cell, session_id):
+    def get_cell(self, workbook_id, sheet_name, range_cell, session_id, drive_id = None):
         """ Get the value of a cell or range from a workbook.
 
         Parameters
@@ -368,23 +388,23 @@ class ExcelOnlineService:
         Returns
         -------
         list
-            a list of lists (representing rows and colums) with the values of the cell/s
+            a list of lists (representing rows and columns) with the values of the cell/s
         """
         headers = {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + self.access_token,
             'workbook-session-id': session_id
         }
-        url = self.base_url + f"/me/drive/items/{workbook_id}/workbook/worksheets/{sheet_name}/range(address='{range_cell}')".format(
-            workbook_id=workbook_id,
-            sheet_name=sheet_name,
-            range_cell=range_cell
-        )
+        if drive_id:
+            url = self.base_url + f"/drives/{drive_id}/items/{workbook_id}/workbook/worksheets/{sheet_name}/range(address='{range_cell}')"
+        else:
+            url = self.base_url + f"/me/drive/items/{workbook_id}/workbook/worksheets/{sheet_name}/range(address='{range_cell}')"
+            
         response = requests.get(url, headers=headers)
         json_response = json.loads(response.text)
         return json_response['values']
 
-    def update_range(self, workbook_id, sheet_name, range_cell, value_cell, session_id):
+    def update_range(self, workbook_id, sheet_name, range_cell, value_cell, session_id, drive_id = None):
         """ Get the value of a cell or range from a workbook.
 
         Parameters
@@ -397,7 +417,7 @@ class ExcelOnlineService:
         Returns
         -------
         list
-            a list of lists (representing rows and colums) with the new values of the cell/s
+            a list of lists (representing rows and columns) with the new values of the cell/s
         """
         headers = {
             'Content-Type': 'application/json',
@@ -406,17 +426,19 @@ class ExcelOnlineService:
         }
         
         # It takes the input and parses it (from str) into to its type (int, float, list, etc)
-        new_values = eval(value_cell)
+        try:
+            new_values = eval(value_cell)
+        except:
+            new_values = value_cell
             
         data = {
             "values" : new_values
         }
 
-        url = self.base_url + f"me/drive/items/{workbook_id}/workbook/worksheets/{sheet_name}/range(address='{range_cell}')".format(
-            workbook_id=workbook_id,
-            sheet_name=sheet_name,
-            range_cell=range_cell
-        )
+        if drive_id:
+            url = self.base_url + f"/drives/{drive_id}/items/{workbook_id}/workbook/worksheets/{sheet_name}/range(address='{range_cell}')"
+        else:
+            url = self.base_url + f"me/drive/items/{workbook_id}/workbook/worksheets/{sheet_name}/range(address='{range_cell}')"
         
         response = requests.patch(url, json=data, headers=headers)
         json_response = json.loads(response.text)
@@ -429,3 +451,38 @@ class ExcelOnlineService:
                 raise ValueError("Check values matrix structure, may not fit given range.")
         except:
             raise ValueError("Check values matrix structure, may not fit given range.")
+        
+    def write_formula(self, workbook_id, sheet_name, range_cell, formula, session_id, drive_id = None):
+        """ Get the value of a cell or range from a workbook.
+
+        Parameters
+        ----------
+        workboook_id : str
+        sheet_name : str
+        range_cell: str
+        formula: str
+            
+        Returns
+        -------
+        list
+            a list of lists (representing rows and columns) with the new values of the cell/s
+        """
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + self.access_token,
+            'workbook-session-id': session_id
+        }
+        
+        data = {
+            "formulas" : formula
+        }
+
+        if drive_id:
+            url = self.base_url + f"/drives/{drive_id}/items/{workbook_id}/workbook/worksheets/{sheet_name}/range(address='{range_cell}')"
+        else:
+            url = self.base_url + f"me/drive/items/{workbook_id}/workbook/worksheets/{sheet_name}/range(address='{range_cell}')"
+        
+        response = requests.patch(url, json=data, headers=headers)
+        json_response = json.loads(response.text)
+        
+        return json_response
