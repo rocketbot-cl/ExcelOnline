@@ -15,6 +15,8 @@ Para instalar o módulo no Rocketbot Studio, pode ser feito de duas formas:
 1. Manual: __Baixe__ o arquivo .zip e descompacte-o na pasta módulos. O nome da pasta deve ser o mesmo do módulo e dentro dela devem ter os seguintes arquivos e pastas: \__init__.py, package.json, docs, example e libs. Se você tiver o aplicativo aberto, atualize seu navegador para poder usar o novo módulo.
 2. Automático: Ao entrar no Rocketbot Studio na margem direita você encontrará a seção **Addons**, selecione **Install Mods**, procure o módulo desejado e aperte instalar.  
 
+
+
 ## Como usar este módulo
 
 Antes de usar este módulo, você precisa registrar seu aplicativo no portal de Registros de Aplicativo do Azure.
@@ -27,10 +29,10 @@ Antes de usar este módulo, você precisa registrar seu aplicativo no portal de 
     - "Somente contas deste diretório organizacional (somente esta conta: locatário único) para este caso usam **ID de locatário específico** do aplicativo.
     - "Somente contas pessoais da Microsoft" para este caso, use ID do locatário = **consumidores**.
 5. Em "Redirect URI" selecione "Web" como plataforma e defina o URI para: https://localhost/. Por fim, clique em "Registrar"
-6. Copie o ID do aplicativo (cliente). Você vai precisar desse valor.
+6. Copie o ID do aplicativo (cliente). Você vai 
+precisar desse valor.
 7. Em "Certificados e segredos", gere um novo segredo do cliente. Defina a validade (de preferência 24 meses). Copie o **VALUE** do segredo do cliente criado (**__NÃO o ID do segredo__**). Ele vai esconder depois de alguns minutos.
 8. Por fim, vá em "Permissões de API", clique em "Adicionar uma permissão", selecione "Microsoft Graph", depois em "Permissões delegadas". Na barra de pesquisa digite "Files.ReadWriteAll", marque a caixa de seleção e clique em "Adicionar permissões".
-
 
 ## Descrição do comando
 
@@ -53,10 +55,11 @@ Defina as credenciais para ter a API disponível
 
 ### Obter arquivos XLSX
   
-Retorna uma lista de todos os arquivos XLSX no local padrão
+Retorna uma lista de todos os arquivos XLSX
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |ID do disco compartilhado (Opcional)||b!4Zasr9LvqUiwt4OZ8irYdG3gm207yiJPkTu3c6KrXmFKVLpG3_FZTrGY-Gxn974J|
+|ID da Pasta (Opcional)|||
 |Variável a atribuir|Variável a atribuir. Retorna a lista de arquivos|lista_archivos|
 
 ### Obter planilhas
@@ -119,7 +122,7 @@ Escrever uma fórmula em uma célula ou intervalo
 |ID do livro|ID do livro|FB60B3125CDC0C03!238 (20 digits ID Code)|
 |Nome da planilha|Nome da planilha|Sheet1|
 |Célula ou intervalo|Célula ou intervalo onde será escrito A1B2|Cell or Range|
-|Fórmula|Fórmula em formato Excel|=sum(2;2)|
+|Fórmula|Fórmula em formato Excel|=sum(2,2)|
 |Variável a atribuir|Variável a atribuir. Retorna True se a alteração foi bem sucedida, caso contrário será False|nuevo_valor_celda|
 
 ### (DESCONTINUADO) Definir credenciais

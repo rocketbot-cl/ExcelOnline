@@ -25,7 +25,7 @@ Obtener código de acceso para generar las credenciales de la API
 Establece las credenciales para tener disponible la API
 
 3. Obtener archivos XLSX  
-Devuelve una lista con todos los archivos XLSX en la locación por defecto
+Devuelve una lista con todos los archivos XLSX en raiz y compartidos contigo. Si especificar
 
 4. Obtener hojas de trabajo  
 Obtiene hojas de trabajo de un archivo de excel
@@ -49,6 +49,11 @@ Escribir una fórmula en una celda o rango
 Establece las credenciales para tener disponible la API  
 
 
+
+### Changes
+Mon Dec 27 11:09:45 2021  (refs/stash) On master: !!GitHub_Desktop<master>
+
+----
 ### OS
 
 - windows

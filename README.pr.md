@@ -25,7 +25,7 @@ Obtenha o código de acesso para gerar credenciais de API
 Defina as credenciais para ter a API disponível
 
 3. Obter arquivos XLSX  
-Retorna uma lista de todos os arquivos XLSX no local padrão
+Retorna uma lista de todos os arquivos XLSX
 
 4. Obter planilhas  
 Obter planilhas de um arquivo do Excel
@@ -49,6 +49,11 @@ Escrever uma fórmula em uma célula ou intervalo
 Defina as credenciais para ter a API disponível  
 
 
+
+### Changes
+Mon Dec 27 11:09:45 2021  (refs/stash) On master: !!GitHub_Desktop<master>
+
+----
 ### OS
 
 - windows

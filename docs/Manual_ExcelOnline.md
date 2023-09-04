@@ -13,7 +13,10 @@ Create, read, update and delete data from Excel files stored into OneDrive
   
 To install the module in Rocketbot Studio, it can be done in two ways:
 1. Manual: __Download__ the .zip file and unzip it in the modules folder. The folder name must be the same as the module and inside it must have the following files and folders: \__init__.py, package.json, docs, example and libs. If you have the application open, refresh your browser to be able to use the new module.
-2. Automatic: When entering Rocketbot Studio on the right margin you will find the **Addons** section, select **Install Mods**, search for the desired module and press install.
+2. Automatic: When entering Rocketbot Studio on the right margin you will find the **Addons** section, select **Install Mods**, search for the desired module and press install.  
+
+
+
 
 ## How to use this module
 
@@ -28,7 +31,8 @@ Before using this module, you need to register your app in the Azure App Registr
     - "Personal Microsoft accounts only" for this case use use Tenant ID = **consumers**.
 5. In "Redirect URI" select "Web" as a plataform and set the URI to: https://localhost/. Finally click on "Register"
 6. Copy the application (client) ID. You will need this value.
-7. Under "Certificates and secrets", generate a new client secret. Set the expiration (preferably 24 months). Copy the **VALUE** of the created client secret (**__NOT the Secret ID__**). It will hide after a few minutes.
+7. Under "Certificates and secrets", generate a new 
+client secret. Set the expiration (preferably 24 months). Copy the **VALUE** of the created client secret (**__NOT the Secret ID__**). It will hide after a few minutes.
 8. Finally, go to "API persmissions", click "Add a permission", select "Microsoft Graph", then "Delegated permissions". In the search bar type "Files.ReadWriteAll", mark the checkbox and click on "Add permissions".
 
 
@@ -53,10 +57,11 @@ Set credentials to make available the API
 
 ### Get XLSX files
   
-Return a list with all the XLSX files in the default location
+Return a list with all the XLSX files in 
 |Parameters|Description|example|
 | --- | --- | --- |
 |Shared Drive ID (Optional)||b!4Zasr9LvqUiwt4OZ8irYdG3gm207yiJPkTu3c6KrXmFKVLpG3_FZTrGY-Gxn974J|
+|Folder ID (Optional)|||
 |Variable to assign|Variable to assign. Returns the list of files|lista_archivos|
 
 ### Get worksheets
@@ -96,7 +101,6 @@ Get a cell or range values
 |Workbook ID|Workbook ID|FB60B3125CDC0C03!238 (20 digits ID Code)|
 |Worksheet name|Worksheet name|Sheet1|
 |Cell or range|Cell or range A1B2|Cell or Range|
->>>>>>> master
 |Variable to assign|Variable to assign. Returns cell or range value/es|valor_celda|
 
 ### Write/change cell
@@ -104,13 +108,6 @@ Get a cell or range values
 Write/change a cell or range value
 |Parameters|Description|example|
 | --- | --- | --- |
-<<<<<<< HEAD
-|Workbook ID|Workbook ID|FB60B3125CDC0C03!238 (20 digits ID Code)|
-|Worksheet name|Worksheet name|Sheet1|
-|Cell or range|Cell or range where it will be written: A1:B2|Cell or Range|
-|Value cell or range|Value of the cell or range: [[1,2],[1,2]]|Value or list of values|
-|Variable to assign|Variable to assign. Returns True if the change was successful, otherwise it will be False|nuevo_valor_celda|
-=======
 |Shared Drive ID (Optional)||b!4Zasr9LvqUiwt4OZ8irYdG3gm207yiJPkTu3c6KrXmFKVLpG3_FZTrGY-Gxn974J|
 |Workbook ID|Workbook ID|FB60B3125CDC0C03!238 (20 digits ID Code)|
 |Worksheet name|Worksheet name|Sheet1|
@@ -127,7 +124,7 @@ Write a formula into a cell or range
 |Workbook ID|Workbook ID|FB60B3125CDC0C03!238 (20 digits ID Code)|
 |Worksheet name|Worksheet name|Sheet1|
 |Cell or range|Cell or range where it will be written A1B2|Cell or Range|
-|Formula|Excel format Formula|=sum(2;2)|
+|Formula|Excel format Formula|=sum(2,2)|
 |Variable to assign|Variable to assign. Returns True if the change was successful, otherwise it will be False|nuevo_valor_celda|
 
 ### (DEPRECATED) Set credentials
@@ -141,4 +138,3 @@ Set credentials to make available the API
 |code|Authorization code|code|
 |tenant|Tenant of the API|tenant|
 |connection|Variable where we will store our result. If the connection is successful, it will return True, otherwise it will return False|connection|
->>>>>>> master

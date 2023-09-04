@@ -145,6 +145,7 @@ if module == "setCredentials_2":
 
 if module == "get_xlsx_files":
     drive_id = GetParams("drive_id")
+    folder_id = GetParams("folder_id")
     res = GetParams("res")
     try:
         if drive_id:

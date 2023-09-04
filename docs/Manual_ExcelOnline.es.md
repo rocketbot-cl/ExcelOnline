@@ -15,6 +15,8 @@ Para instalar el módulo en Rocketbot Studio, se puede hacer de dos formas:
 1. Manual: __Descargar__ el archivo .zip y descomprimirlo en la carpeta modules. El nombre de la carpeta debe ser el mismo al del módulo y dentro debe tener los siguientes archivos y carpetas: \__init__.py, package.json, docs, example y libs. Si tiene abierta la aplicación, refresca el navegador para poder utilizar el nuevo modulo.
 2. Automática: Al ingresar a Rocketbot Studio sobre el margen derecho encontrara la sección de **Addons**, seleccionar **Install Mods**, buscar el modulo deseado y presionar install.  
 
+
+
 ## Como usar este modulo
 
 Antes de usar este módulo, es necesario registrar tu aplicación en el portal de Azure App Registrations. 
@@ -27,7 +29,8 @@ Antes de usar este módulo, es necesario registrar tu aplicación en el portal d
     - "Solo cuentas de este directorio organizativo (solo esta cuenta: inquilino único) para este caso utilizar **ID Inquilino** especifico de la aplicación.
     - "Solo cuentas personales de Microsoft " for this case use use Tenant ID = **consumers**.
 5. En "URI de Redirección" selecciones "Web" como plataforma y ponga como URI: __https://localhost/__. Finalmente clieckear en "Registrar". 
-6. Copie el ID de la aplicación (cliente). Necesitará este valor. 
+6. Copie el ID de 
+la aplicación (cliente). Necesitará este valor. 
 7. Dentro de "Certificados y secretos", genere un nuevo secreto de cliente. Establezca la caducidad (preferiblemente 24 meses). Copie el **VALOR** del secreto de cliente creado (**__NO el ID de Secreto__**). El mismo se ocultará al cabo de unos minutos.
 8. Finalmente, vaya a "Permisos de API", haga click en "Agregar un permiso", seleccione "Microsoft Graph", luego "Permisos delegados". En la barra de búsqueda tipee, "Files.ReadWriteAll", marque con un tilde el casillero y clickee en "Adherir Permisos". 
 
@@ -53,10 +56,11 @@ Establece las credenciales para tener disponible la API
 
 ### Obtener archivos XLSX
   
-Devuelve una lista con todos los archivos XLSX en la locación por defecto
+Devuelve una lista con todos los archivos XLSX en raiz y compartidos contigo. Si especificar
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |ID de Disco Compartido (Opcional)||b!4Zasr9LvqUiwt4OZ8irYdG3gm207yiJPkTu3c6KrXmFKVLpG3_FZTrGY-Gxn974J|
+|ID de Carpeta (Opcional)|||
 |Variable a asignar|Variable a asignar. Retorna la lista de archivos|lista_archivos|
 
 ### Obtener hojas de trabajo
@@ -119,7 +123,7 @@ Escribir una fórmula en una celda o rango
 |ID del Libro|ID del libro|FB60B3125CDC0C03!238 (20 digits ID Code)|
 |Nombre de la hoja|Nombre de la hoja|Sheet1|
 |Celda o rango|Celda o rango donde se escribira A1B2|Cell or Range|
-|Formula|Formula en formato Excel|=sum(2;2)|
+|Formula|Formula en formato Excel|=sum(2,2)|
 |Variable a asignar|Variable a asignar. Retorna True si el cambio fue exitoso, caso contraria sera False|nuevo_valor_celda|
 
 ### (OBSOLETO) Establecer credenciales

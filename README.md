@@ -25,7 +25,7 @@ Get access code to create the credentials for the API
 Set credentials to make available the API
 
 3. Get XLSX files  
-Return a list with all the XLSX files in the default location
+Return a list with all the XLSX files in 
 
 4. Get worksheets  
 Get worksheets from an excel file
@@ -45,10 +45,15 @@ Write/change a cell or range value
 9. Write formula  
 Write a formula into a cell or range
 
-10.  (DEPRECATED) Set credentials  
+10. (DEPRECATED) Set credentials  
 Set credentials to make available the API  
 
 
+
+### Changes
+Mon Dec 27 11:09:45 2021  (refs/stash) On master: !!GitHub_Desktop<master>
+
+----
 ### OS
 
 - windows

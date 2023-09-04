@@ -7,7 +7,7 @@
     "pr": "Crie, leia, atualize e exclua dados de arquivos do Excel armazenados no OneDrive"
   },
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "license": "MIT",
   "homepage": "http://rocketbot.com/",
   "linux": true,
@@ -186,19 +186,19 @@
     {
       "en": {
         "title": "Get XLSX files",
-        "description": "Return a list with all the XLSX files in the default location",
+        "description": "Return a list with all the XLSX files in ",
         "title_options": "Select Option",
         "options": null
       },
       "es": {
         "title": "Obtener archivos XLSX",
-        "description": "Devuelve una lista con todos los archivos XLSX en la locación por defecto",
+        "description": "Devuelve una lista con todos los archivos XLSX en raiz y compartidos contigo. Si especificar",
         "title_options": "Seleccione una opción",
         "options": null
       },
       "pr": {
         "title": "Obter arquivos XLSX",
-        "description": "Retorna uma lista de todos os arquivos XLSX no local padrão",
+        "description": "Retorna uma lista de todos os arquivos XLSX",
         "title_options": "Selecione uma opção",
         "options": null
       },
@@ -214,11 +214,27 @@
               "pr": "ID do disco compartilhado (Opcional)"
             },
             "help": {
-              "es": "Utilizar cuando los archivos a listar se encuentren en una carpeta compartida.",
-              "en": "Use when the files to be listed are in a shared folder.",
-              "pr": "Use quando os arquivos a serem listados estiverem em uma pasta compartilhada."
+              "es": "Utilizar para listar archivos de un drive específico.",
+              "en": "Use to list files from a specific drive.",
+              "pr": "Use para listar arquivos de uma unidade específica."
             },
             "id": "drive_id",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "",
+            "title": {
+              "es": "ID de Carpeta (Opcional)",
+              "en": "Folder ID (Optional)",
+              "pr": "ID da Pasta (Opcional)"
+            },
+            "help": {
+              "es": "Utilizar para listar archivos de una carpeta específica.",
+              "en": "Use to list files in a specific folder.",
+              "pr": "Use para listar arquivos em uma pasta específica."
+            },
+            "id": "folder_id",
             "css": "col-md-12"
           },
           {

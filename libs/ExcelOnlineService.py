@@ -238,18 +238,36 @@ class ExcelOnlineService:
             else:
                 url = self.base_url + f"/drives/{drive_id}/search(q='.xlsx')?select=name,id,webUrl"
         else:
-            url = self.base_url + f"me/drive/items/{folder_id}/search(q='.xlsx')?select=name,id,webUrl"
+            url = self.base_url + f"me/drive/items/{folder_id}/search(q='.xlsx')" #?select=name,id,webUrl
+            url_shared = self.base_url + "me/drive/sharedWithMe/"
             
         response = requests.get(url, headers=headers)
         json_response = json.loads(response.text)
-        print(json_response)
         clean_data = []
         for xlsx in json_response['value']:
-            for k in ['@odata.type','webUrl']:
-                xlsx.pop(k)
-            clean_data.append(xlsx)
+            xlsx_ = {}
+            xlsx_['name'] = xlsx['name']
+            xlsx_['id'] = xlsx['id']
+            xlsx_['driveId'] = xlsx['parentReference']['driveId']
+            clean_data.append(xlsx_)
+            
+            # for k in ['@odata.type','webUrl']:
+            #     xlsx.pop(k)
+            # clean_data.append(xlsx)
+        
+        if url_shared:
+            response_shared = requests.get(url_shared, headers=headers)
+            json_response_shared = json.loads(response_shared.text)
+            for file in json_response_shared['value']:
+                if '.xlsx' in file['name']:
+                    file_ = {}
+                    file_['name'] = file['name']
+                    file_['id'] = file['id']
+                    file_['driveId'] = file['parentReference']['driveId']
+                    clean_data.append(file_)
+        
         return clean_data
-
+        
     def get_worksheets(self, workbook_id, drive_id = None):
         """ Get the worksheets of a workbook.
 
