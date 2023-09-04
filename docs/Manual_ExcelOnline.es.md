@@ -59,7 +59,7 @@ Establece las credenciales para tener disponible la API
 Devuelve una lista con todos los archivos XLSX en raiz y compartidos contigo. Si especificar
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|ID de Disco Compartido (Opcional)||b!4Zasr9LvqUiwt4OZ8irYdG3gm207yiJPkTu3c6KrXmFKVLpG3_FZTrGY-Gxn974J|
+|ID de Disco Compartido (Opcional)||097JB2CA2559D776|
 |ID de Carpeta (Opcional)|||
 |Variable a asignar|Variable a asignar. Retorna la lista de archivos|lista_archivos|
 
@@ -68,7 +68,7 @@ Devuelve una lista con todos los archivos XLSX en raiz y compartidos contigo. Si
 Obtiene hojas de trabajo de un archivo de excel
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|ID de Disco Compartido (Opcional)||b!4Zasr9LvqUiwt4OZ8irYdG3gm207yiJPkTu3c6KrXmFKVLpG3_FZTrGY-Gxn974J|
+|ID de Disco Compartido (Opcional)||097JB2CA2559D776|
 |ID del Libro|ID del Libro|FB60B3125CDC0C03!238 (20 digits ID Code)|
 |Variable a asignar|Variable a asignar. Retorna la lista de hojas del libro|lista_hojas|
 
@@ -77,7 +77,7 @@ Obtiene hojas de trabajo de un archivo de excel
 Crear un nuevo libro en la ubicación por defecto
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|ID de Disco Compartido (Opcional)||b!4Zasr9LvqUiwt4OZ8irYdG3gm207yiJPkTu3c6KrXmFKVLpG3_FZTrGY-Gxn974J|
+|ID de Disco Compartido (Opcional)||097JB2CA2559D776|
 |Nombre del libro|Nombre del libro|Libro Nuevo|
 |Variable a asignar|Variable a asignar. Retorna ID del nuevo libro|id_nuevoLibro|
 
@@ -86,7 +86,7 @@ Crear un nuevo libro en la ubicación por defecto
 Añadir una nueva hoja al libro
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|ID de Disco Compartido (Opcional)||b!4Zasr9LvqUiwt4OZ8irYdG3gm207yiJPkTu3c6KrXmFKVLpG3_FZTrGY-Gxn974J|
+|ID de Disco Compartido (Opcional)||097JB2CA2559D776|
 |ID del Libro|ID del libro|FB60B3125CDC0C03!238 (20 digits ID Code)|
 |Nombre de la hoja|Nombre de la hoja|Sheet1|
 |Variable a asignar|Variable a asignar. Retorna el nombre de la nueva hoja|nombre_nuevaHoja|
@@ -96,7 +96,7 @@ Añadir una nueva hoja al libro
 Obtener valor de celda o rango
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|ID de Disco Compartido (Opcional)||b!4Zasr9LvqUiwt4OZ8irYdG3gm207yiJPkTu3c6KrXmFKVLpG3_FZTrGY-Gxn974J|
+|ID de Disco Compartido (Opcional)||097JB2CA2559D776|
 |ID del Libro|ID del Libro|FB60B3125CDC0C03!238 (20 digits ID Code)|
 |Nombre de la hoja|Nombre de la hoja|Sheet1|
 |Celda o rango|Celda o rango A1B2|Cell or Range|
@@ -107,7 +107,7 @@ Obtener valor de celda o rango
 Escribir/cambiar el valor de una celda o rango
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|ID de Disco Compartido (Opcional)||b!4Zasr9LvqUiwt4OZ8irYdG3gm207yiJPkTu3c6KrXmFKVLpG3_FZTrGY-Gxn974J|
+|ID de Disco Compartido (Opcional)||097JB2CA2559D776|
 |ID del Libro|ID del libro|FB60B3125CDC0C03!238 (20 digits ID Code)|
 |Nombre de la hoja|Nombre de la hoja|Sheet1|
 |Celda o rango|Celda o rango donde se escribira A1B2|Cell or Range|
@@ -119,7 +119,7 @@ Escribir/cambiar el valor de una celda o rango
 Escribir una fórmula en una celda o rango
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|ID de Disco Compartido (Opcional)||b!4Zasr9LvqUiwt4OZ8irYdG3gm207yiJPkTu3c6KrXmFKVLpG3_FZTrGY-Gxn974J|
+|ID de Disco Compartido (Opcional)||097JB2CA2559D776|
 |ID del Libro|ID del libro|FB60B3125CDC0C03!238 (20 digits ID Code)|
 |Nombre de la hoja|Nombre de la hoja|Sheet1|
 |Celda o rango|Celda o rango donde se escribira A1B2|Cell or Range|

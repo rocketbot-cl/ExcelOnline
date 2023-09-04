@@ -58,7 +58,7 @@ Defina as credenciais para ter a API disponível
 Retorna uma lista de todos os arquivos XLSX
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
-|ID do disco compartilhado (Opcional)||b!4Zasr9LvqUiwt4OZ8irYdG3gm207yiJPkTu3c6KrXmFKVLpG3_FZTrGY-Gxn974J|
+|ID do disco compartilhado (Opcional)||097JB2CA2559D776|
 |ID da Pasta (Opcional)|||
 |Variável a atribuir|Variável a atribuir. Retorna a lista de arquivos|lista_archivos|
 
@@ -67,7 +67,7 @@ Retorna uma lista de todos os arquivos XLSX
 Obter planilhas de um arquivo do Excel
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
-|ID do disco compartilhado (Opcional)||b!4Zasr9LvqUiwt4OZ8irYdG3gm207yiJPkTu3c6KrXmFKVLpG3_FZTrGY-Gxn974J|
+|ID do disco compartilhado (Opcional)||097JB2CA2559D776|
 |ID do livro|ID do livro|FB60B3125CDC0C03!238 (20 digits ID Code)|
 |Variável a atribuir|Variable a asignar. Retorna la lista de hojas del libro|lista_hojas|
 
@@ -76,7 +76,7 @@ Obter planilhas de um arquivo do Excel
 Criar um novo livro no local padrão
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
-|ID do disco compartilhado (Opcional)||b!4Zasr9LvqUiwt4OZ8irYdG3gm207yiJPkTu3c6KrXmFKVLpG3_FZTrGY-Gxn974J|
+|ID do disco compartilhado (Opcional)||097JB2CA2559D776|
 |Nome do livro|Nome do livro|Libro Nuevo|
 |Variable a asignar|Variável a atribuir. ID de retorno do novo livro|id_nuevoLibro|
 
@@ -85,7 +85,7 @@ Criar um novo livro no local padrão
 Adicionar uma nova folha ao livro
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
-|ID do disco compartilhado (Opcional)||b!4Zasr9LvqUiwt4OZ8irYdG3gm207yiJPkTu3c6KrXmFKVLpG3_FZTrGY-Gxn974J|
+|ID do disco compartilhado (Opcional)||097JB2CA2559D776|
 |ID do livro|ID do livro|FB60B3125CDC0C03!238 (20 digits ID Code)|
 |Nome da planilha|Nome da planilha|Sheet1|
 |Variável a atribuir|Variável a atribuir. Retorna o nome da nova planilha|nombre_nuevaHoja|
@@ -95,7 +95,7 @@ Adicionar uma nova folha ao livro
 Obter valor da célula ou intervalo
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
-|ID do disco compartilhado (Opcional)||b!4Zasr9LvqUiwt4OZ8irYdG3gm207yiJPkTu3c6KrXmFKVLpG3_FZTrGY-Gxn974J|
+|ID do disco compartilhado (Opcional)||097JB2CA2559D776|
 |ID do livro|ID do livro|FB60B3125CDC0C03!238 (20 digits ID Code)|
 |Nome da planilha|Nome da planilha|Sheet1|
 |Célula ou intervalo|Célula ou intervalo A1B2|Cell or Range|
@@ -106,7 +106,7 @@ Obter valor da célula ou intervalo
 Digite/altere o valor de uma célula ou intervalo
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
-|ID do disco compartilhado (Opcional)||b!4Zasr9LvqUiwt4OZ8irYdG3gm207yiJPkTu3c6KrXmFKVLpG3_FZTrGY-Gxn974J|
+|ID do disco compartilhado (Opcional)||097JB2CA2559D776|
 |ID do livro|ID do livro|FB60B3125CDC0C03!238 (20 digits ID Code)|
 |Nome da planilha|Nome da planilha|Sheet1|
 |Célula ou intervalo|Célula ou intervalo onde será escrito A1B2|Cell or Range|
@@ -118,7 +118,7 @@ Digite/altere o valor de uma célula ou intervalo
 Escrever uma fórmula em uma célula ou intervalo
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
-|ID do disco compartilhado (Opcional)||b!4Zasr9LvqUiwt4OZ8irYdG3gm207yiJPkTu3c6KrXmFKVLpG3_FZTrGY-Gxn974J|
+|ID do disco compartilhado (Opcional)||097JB2CA2559D776|
 |ID do livro|ID do livro|FB60B3125CDC0C03!238 (20 digits ID Code)|
 |Nome da planilha|Nome da planilha|Sheet1|
 |Célula ou intervalo|Célula ou intervalo onde será escrito A1B2|Cell or Range|
