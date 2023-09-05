@@ -4,55 +4,54 @@
 
 # ExcelOnline
   
-Working with Excel Online  
+Create, read, update and delete data from Excel files stored into OneDrive  
 
-## Howto install this module
+*Read this in other languages: [English](README.md), [Português](README.pr.md), [Español](README.es.md)*
+
+## How to install this module
   
-__Download__ and __install__ the content in 'modules' folder in Rocketbot path  
+To install the module in Rocketbot Studio, it can be done in two ways:
+1. Manual: __Download__ the .zip file and unzip it in the modules folder. The folder name must be the same as the module and inside it must have the following files and folders: \__init__.py, package.json, docs, example and libs. If you have the application open, refresh your browser to be able to use the new module.
+2. Automatic: When entering Rocketbot Studio on the right margin you will find the **Addons** section, select **Install Mods**, search for the desired module and press install.  
 
-## How to use this module
-
-Before using this module, you must register your app into the Azure Portal.
-
-Registration:
-
-1. Sign in to Azure Portal. Then go to the next link: https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade (App Registrations).
-2. Click on "New registration". Choose a name.
-3. In “Supported account types” choose "Accounts in any organizational directory (Any Azure AD directory - Multitenant) and personal Microsoft accounts (e.g. Skype, Xbox)".
-4. In "Redirect URI" select "Web" as a plataform and set the URI to: https://localhost/. Finally click on "Register"
-5. Once registered, on the "Overview" section you will find the "Application (client) ID", write it down/save it, you will need it later.
-6. Go to "Certificates & secrets", generate a "New client secret", write a description and set the expration time to 24 months (preferably). Click on "Add" and write down/save the "Value" (NOT the "Secret ID"), you will need it later together with the App ID.
-7. Finally, go to "API persmissions", click on "Add a permission", then on "Microsoft Graph" and select "Delegated permissions". In the search bar type "Files.ReadWriteAll", mark the checkbox and click on "Add permissions".
 
 ## Overview
 
 
-1. Set credentials  
-Set credentials to make available the API
-
-2. Get access code  
+1. Get access code  
 Get access code to create the credentials for the API
 
-3. Set credentials  
+2. Set credentials  
 Set credentials to make available the API
 
-4. Get XLSX files  
-Return a list with all the XLSX files in the default location
+3. Get XLSX files  
+Return a list with all the XLSX files in 
 
-5. Get worksheets  
+4. Get worksheets  
 Get worksheets from an excel file
 
-6. Create workbook  
+5. Create workbook  
 Create a new workbook in the default location
 
-7. Add new worksheet  
+6. Add new worksheet  
 Add a new worksheet to the workbook
 
-8. Get cell  
+7. Get cell  
 Get a cell or range values
 
-9. Write/change cell  
-Write/change a cell or range value  
+8. Write/change cell  
+Write/change a cell or range value
+
+9. Write formula  
+Write a formula into a cell or range
+
+10. (DEPRECATED) Set credentials  
+Set credentials to make available the API  
+
+
+
+### Changes
+Mon Dec 27 11:09:45 2021  (refs/stash) On master: !!GitHub_Desktop<master>
 
 ----
 ### OS
