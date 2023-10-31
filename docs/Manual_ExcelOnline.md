@@ -57,7 +57,7 @@ Set credentials to make available the API
 
 ### Get XLSX files
   
-Return a list with all the XLSX files in 
+Returns a list of all the XLSX files in the root of the disk and those shared with you. If you specify a disk ID it will return the XLSX on that disk
 |Parameters|Description|example|
 | --- | --- | --- |
 |Shared Drive ID (Optional)||097JB2CA2559D776|
