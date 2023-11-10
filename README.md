@@ -25,7 +25,7 @@ Get access code to create the credentials for the API
 Set credentials to make available the API
 
 3. Get XLSX files  
-Return a list with all the XLSX files in 
+Returns a list of all the XLSX files in the root of the disk and those shared with you. If you specify a disk ID it will return the XLSX on that disk 
 
 4. Get worksheets  
 Get worksheets from an excel file

@@ -25,7 +25,7 @@ Obtener código de acceso para generar las credenciales de la API
 Establece las credenciales para tener disponible la API
 
 3. Obtener archivos XLSX  
-Devuelve una lista con todos los archivos XLSX en raiz y compartidos contigo. Si especificar
+Devuelve una lista con todos los archivos XLSX en la raiz del disco y los compartidos contigo. Si especifica un ID de disco retornara los XLSX en ese disco
 
 4. Obtener hojas de trabajo  
 Obtiene hojas de trabajo de un archivo de excel

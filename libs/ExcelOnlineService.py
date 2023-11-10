@@ -248,7 +248,11 @@ class ExcelOnlineService:
             xlsx_ = {}
             xlsx_['name'] = xlsx['name']
             xlsx_['id'] = xlsx['id']
-            xlsx_['driveId'] = xlsx['parentReference']['driveId']
+            try:
+                xlsx_['driveId'] = xlsx['parentReference']['driveId']
+            except:
+                xlsx_['driveId'] = xlsx['remoteItem']['parentReference']['driveId']
+            
             clean_data.append(xlsx_)
             
             # for k in ['@odata.type','webUrl']:
@@ -263,7 +267,11 @@ class ExcelOnlineService:
                     file_ = {}
                     file_['name'] = file['name']
                     file_['id'] = file['id']
-                    file_['driveId'] = file['parentReference']['driveId']
+                    try:
+                        file_['driveId'] = file['parentReference']['driveId']
+                    except:
+                        file_['driveId'] = file['remoteItem']['parentReference']['driveId']
+                    
                     clean_data.append(file_)
         
         return clean_data

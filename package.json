@@ -7,7 +7,7 @@
     "pr": "Crie, leia, atualize e exclua dados de arquivos do Excel armazenados no OneDrive"
   },
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "license": "MIT",
   "homepage": "http://rocketbot.com/",
   "linux": true,
@@ -186,19 +186,19 @@
     {
       "en": {
         "title": "Get XLSX files",
-        "description": "Return a list with all the XLSX files in ",
+        "description": "Returns a list of all the XLSX files in the root of the disk and those shared with you. If you specify a disk ID it will return the XLSX on that disk",
         "title_options": "Select Option",
         "options": null
       },
       "es": {
         "title": "Obtener archivos XLSX",
-        "description": "Devuelve una lista con todos los archivos XLSX en raiz y compartidos contigo. Si especificar",
+        "description": "Devuelve una lista con todos los archivos XLSX en la raiz del disco y los compartidos contigo. Si especifica un ID de disco retornara los XLSX en ese disco",
         "title_options": "Seleccione una opción",
         "options": null
       },
       "pr": {
         "title": "Obter arquivos XLSX",
-        "description": "Retorna uma lista de todos os arquivos XLSX",
+        "description": "Retorna uma lista de todos os arquivos XLSX na raiz do disco e aqueles compartilhados com você. Se você especificar um ID de disco, ele retornará o XLSX desse disco",
         "title_options": "Selecione uma opção",
         "options": null
       },

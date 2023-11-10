@@ -56,7 +56,7 @@ Establece las credenciales para tener disponible la API
 
 ### Obtener archivos XLSX
   
-Devuelve una lista con todos los archivos XLSX en raiz y compartidos contigo. Si especificar
+Devuelve una lista con todos los archivos XLSX en la raiz del disco y los compartidos contigo. Si especifica un ID de disco retornara los XLSX en ese disco
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |ID de Disco Compartido (Opcional)||097JB2CA2559D776|
