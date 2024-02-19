@@ -221,6 +221,29 @@ class ExcelOnlineService:
             print(e)
             raise e
 
+    def get_drives(self):
+        """ Get the '.xlsx' files in the directory.
+            
+        Returns
+        -------
+        list
+            a list of dictionaries with name and ID of the xlsx files
+        """
+        headers = {
+            'Authorization': 'Bearer ' + self.access_token
+        }
+
+        url = self.base_url + f"drives?$select=driveType,id,owner,name,description"
+        response = requests.get(url, headers=headers)
+        if response.status_code != 200:
+            url = self.base_url + f"drives?$select=driveType,id,owner"
+            response = requests.get(url, headers=headers)
+        if response.status_code == 200:
+            json_response = json.loads(response.text)['value']
+        else:
+            json_response = json.loads(response.text)
+        return json_response
+
     def get_xlsx_files(self, folder_id = 'root', drive_id = None):
         """ Get the '.xlsx' files in the directory.
             
@@ -248,9 +271,10 @@ class ExcelOnlineService:
             xlsx_ = {}
             xlsx_['name'] = xlsx['name']
             xlsx_['id'] = xlsx['id']
-            try:
+            xlsx_['driveId'] = ""
+            if 'parentReference' in xlsx.keys():
                 xlsx_['driveId'] = xlsx['parentReference']['driveId']
-            except:
+            if 'remoteItem' in xlsx.keys():
                 xlsx_['driveId'] = xlsx['remoteItem']['parentReference']['driveId']
             
             clean_data.append(xlsx_)

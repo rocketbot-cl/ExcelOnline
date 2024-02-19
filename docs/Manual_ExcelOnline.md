@@ -18,13 +18,9 @@ To install the module in Rocketbot Studio, it can be done in two ways:
 
 
 
-
 ## How to use this module
 
 Before using this module, you need to register your app in the Azure App Registrations portal.
-
-Registrations.
-
 
 1. Sign in to the Azure portal and search for the Azure Active Directory service.
 2. On the left side menu, get into "App Registrations".
@@ -58,6 +54,13 @@ Set credentials to make available the API
 | --- | --- | --- |
 |code|Authorization code|code|
 |Variable to assign|Variable to assign. If the connection is successful, it will return True, otherwise it will return False|variable|
+
+### Get drives
+  
+Returns a list of drives to which the account has access to
+|Parameters|Description|example|
+| --- | --- | --- |
+|Variable to assign|Variable to assign. Returns the list of files|drives|
 
 ### Get XLSX files
   
