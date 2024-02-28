@@ -24,28 +24,31 @@ Obtener código de acceso para generar las credenciales de la API
 2. Establecer credenciales  
 Establece las credenciales para tener disponible la API
 
-3. Obtener archivos XLSX  
+3. Obtener discos  
+Devuelve una lista de unidades a las que la cuenta tiene acceso
+
+4. Obtener archivos XLSX  
 Devuelve una lista con todos los archivos XLSX en la raiz del disco y los compartidos contigo. Si especifica un ID de disco retornara los XLSX en ese disco
 
-4. Obtener hojas de trabajo  
+5. Obtener hojas de trabajo  
 Obtiene hojas de trabajo de un archivo de excel
 
-5. Crear libro  
+6. Crear libro  
 Crear un nuevo libro en la ubicación por defecto
 
-6. Añadir nueva hoja  
+7. Añadir nueva hoja  
 Añadir una nueva hoja al libro
 
-7. Obtener celda  
+8. Obtener celda  
 Obtener valor de celda o rango
 
-8. Escribir/cambiar celda  
+9. Escribir/cambiar celda  
 Escribir/cambiar el valor de una celda o rango
 
-9. Escribir formula  
+10. Escribir formula  
 Escribir una fórmula en una celda o rango
 
-10. (OBSOLETO) Establecer credenciales  
+11. (OBSOLETO) Establecer credenciales  
 Establece las credenciales para tener disponible la API  
 
 

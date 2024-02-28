@@ -24,28 +24,31 @@ Get access code to create the credentials for the API
 2. Set credentials  
 Set credentials to make available the API
 
-3. Get XLSX files  
-Returns a list of all the XLSX files in the root of the disk and those shared with you. If you specify a disk ID it will return the XLSX on that disk 
+3. Get drives  
+Returns a list of drives to which the account has access to
 
-4. Get worksheets  
+4. Get XLSX files  
+Returns a list of all the XLSX files in the root of the disk and those shared with you. If you specify a disk ID it will return the XLSX on that disk
+
+5. Get worksheets  
 Get worksheets from an excel file
 
-5. Create workbook  
+6. Create workbook  
 Create a new workbook in the default location
 
-6. Add new worksheet  
+7. Add new worksheet  
 Add a new worksheet to the workbook
 
-7. Get cell  
+8. Get cell  
 Get a cell or range values
 
-8. Write/change cell  
+9. Write/change cell  
 Write/change a cell or range value
 
-9. Write formula  
+10. Write formula  
 Write a formula into a cell or range
 
-10. (DEPRECATED) Set credentials  
+11. (DEPRECATED) Set credentials  
 Set credentials to make available the API  
 
 

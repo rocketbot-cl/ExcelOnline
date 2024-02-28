@@ -24,28 +24,31 @@ Obtenha o código de acesso para gerar credenciais de API
 2. Definir credenciais  
 Defina as credenciais para ter a API disponível
 
-3. Obter arquivos XLSX  
+3. Obter drives  
+Retorna uma lista de unidades às quais a conta tem acesso
+
+4. Obter arquivos XLSX  
 Retorna uma lista de todos os arquivos XLSX na raiz do disco e aqueles compartilhados com você. Se você especificar um ID de disco, ele retornará o XLSX desse disco
 
-4. Obter planilhas  
+5. Obter planilhas  
 Obter planilhas de um arquivo do Excel
 
-5. Criar livro  
+6. Criar livro  
 Criar um novo livro no local padrão
 
-6. Adicionar nova planilha  
+7. Adicionar nova planilha  
 Adicionar uma nova folha ao livro
 
-7. Obter célula  
+8. Obter célula  
 Obter valor da célula ou intervalo
 
-8. Gravar/alterar célula  
+9. Gravar/alterar célula  
 Digite/altere o valor de uma célula ou intervalo
 
-9. Escrever fórmula  
+10. Escrever fórmula  
 Escrever uma fórmula em uma célula ou intervalo
 
-10. (DESCONTINUADO) Definir credenciais  
+11. (DESCONTINUADO) Definir credenciais  
 Defina as credenciais para ter a API disponível  
 
 

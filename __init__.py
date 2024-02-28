@@ -143,6 +143,18 @@ if module == "setCredentials_2":
         traceback.print_exc()
         raise e
 
+if module == "get_drives":
+    res = GetParams("res")
+    try:
+        drives = excel_online_service.get_drives()
+        SetVar(res, drives)
+    except Exception as e:
+        SetVar(res, False)
+        print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
+        PrintException()
+        traceback.print_exc()
+        raise e
+
 if module == "get_xlsx_files":
     drive_id = GetParams("drive_id")
     folder_id = GetParams("folder_id")
@@ -252,7 +264,6 @@ if module == "get_cell":
             value_cell = excel_online_service.get_cell(workbook_id, worksheet_name, range_cell, session_id)
             excel_online_service.close_session(workbook_id, session_id)
         SetVar(res, value_cell)
-        a = excel_online_service.close_session(session_id)
     except Exception as e:
         SetVar(res, False)
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")

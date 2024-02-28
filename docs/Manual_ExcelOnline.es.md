@@ -54,6 +54,13 @@ Establece las credenciales para tener disponible la API
 |code|Código de autorización|code|
 |Variable a asignar|Variable a asignar. Si la conexion es exitosa retorna True, caso contraria sera False|variable|
 
+### Obtener discos
+  
+Devuelve una lista de unidades a las que la cuenta tiene acceso
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Variable a asignar|Variable a asignar. Retorna la lista de archivos|drives|
+
 ### Obtener archivos XLSX
   
 Devuelve una lista con todos los archivos XLSX en la raiz del disco y los compartidos contigo. Si especifica un ID de disco retornara los XLSX en ese disco
