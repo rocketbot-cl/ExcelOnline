@@ -133,6 +133,16 @@ Escribir una fórmula en una celda o rango
 |Formula|Formula en formato Excel|=sum(2,2)|
 |Variable a asignar|Variable a asignar. Retorna True si el cambio fue exitoso, caso contraria sera False|nuevo_valor_celda|
 
+### Contar filas
+  
+Devuelve el número de filas del archivo Excel.
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|ID de Disco Compartido (Opcional)||097JB2CA2559D776|
+|ID del Libro|ID del libro|FB60B3125CDC0C03!238 (20 digits ID Code)|
+|Nombre de la hoja|Nombre de la hoja|Sheet1|
+|Variable a asignar|Variable a asignar.|rows|
+
 ### (OBSOLETO) Establecer credenciales
   
 Establece las credenciales para tener disponible la API

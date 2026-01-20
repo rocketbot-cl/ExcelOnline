@@ -157,13 +157,13 @@ if module == "get_drives":
 
 if module == "get_xlsx_files":
     drive_id = GetParams("drive_id")
-    folder_id = GetParams("folder_id")
+    folder_id = GetParams("folder_id") or "root"
     res = GetParams("res")
     try:
         if drive_id:
-            files = excel_online_service.get_xlsx_files(drive_id)
+            files = excel_online_service.get_xlsx_files(folder_id, drive_id)
         else:
-            files = excel_online_service.get_xlsx_files()
+            files = excel_online_service.get_xlsx_files(folder_id)
         SetVar(res, files)
     except Exception as e:
         SetVar(res, False)
@@ -315,6 +315,30 @@ if module == "write_formula":
     except Exception as e:
         SetVar(res, False)
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
+        PrintException()
+        traceback.print_exc()
+        raise e
+    
+if module == "count_rows":
+    drive_id = GetParams("drive_id")
+    workbook_id = GetParams("workbook_id")
+    worksheet_name = GetParams("worksheet_name")
+    result = GetParams("res")
+    
+    try:
+        if drive_id:
+            session_id = excel_online_service.create_session(workbook_id, drive_id)
+            row_count = excel_online_service.count_rows(workbook_id, worksheet_name, session_id, drive_id)
+            excel_online_service.close_session(workbook_id, session_id, drive_id)
+        else:
+            session_id = excel_online_service.create_session(workbook_id)
+            row_count = excel_online_service.count_rows(workbook_id, worksheet_name, session_id)
+            excel_online_service.close_session(workbook_id, session_id)
+
+        SetVar(result, row_count)
+    except Exception as e:
+        SetVar(result, 0)
+        print("\x1B[31;40mAn error occurred\x1B[0m")
         PrintException()
         traceback.print_exc()
         raise e

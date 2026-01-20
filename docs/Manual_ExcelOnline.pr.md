@@ -132,6 +132,16 @@ Escrever uma fórmula em uma célula ou intervalo
 |Fórmula|Fórmula em formato Excel|=sum(2,2)|
 |Variável a atribuir|Variável a atribuir. Retorna True se a alteração foi bem sucedida, caso contrário será False|nuevo_valor_celda|
 
+### Contar linhas
+  
+Devolve o número de linhas do arquivo Excel.
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|ID do disco compartilhado (Opcional)||097JB2CA2559D776|
+|ID do livro|ID do livro|FB60B3125CDC0C03!238 (20 digits ID Code)|
+|Nome da planilha|Nome da planilha|Sheet1|
+|Variável a atribuir|Variável a atribuir.|rows|
+
 ### (DESCONTINUADO) Definir credenciais
   
 Defina as credenciais para ter a API disponível
