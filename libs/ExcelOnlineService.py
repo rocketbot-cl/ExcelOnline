@@ -154,6 +154,13 @@ class ExcelOnlineService:
                 code = auth_code,
                 scopes = self.scopes
             )
+            if not access_token:
+                raise Exception(
+                    f"Refresh token failed: "
+                    f"error={access_token.get('error')}, "
+                    f"desc={access_token.get('error_description')}, "
+                    f"suberror={access_token.get('suberror')}"
+                )
             json_response = access_token
             self.access_token = json_response['access_token']
             self.refresh_token = json_response['refresh_token']
@@ -191,6 +198,13 @@ class ExcelOnlineService:
                 refresh_token = refresh_token,
                 scopes = self.scopes
             )
+            if not access_token:
+                raise Exception(
+                    f"Refresh token failed: "
+                    f"error={access_token.get('error')}, "
+                    f"desc={access_token.get('error_description')}, "
+                    f"suberror={access_token.get('suberror')}"
+                )
             json_response = access_token
             self.access_token = json_response['access_token']
             self.refresh_token = json_response['refresh_token']
@@ -255,6 +269,7 @@ class ExcelOnlineService:
         headers = {
             'Authorization': 'Bearer ' + self.access_token
         }
+        url_shared = None
         if drive_id:
             if folder_id != 'root':
                 url = self.base_url + f"/drives/{drive_id}/items/{folder_id}/search(q='.xlsx')?select=name,id,webUrl"
@@ -265,6 +280,9 @@ class ExcelOnlineService:
             url_shared = self.base_url + "me/drive/sharedWithMe/"
             
         response = requests.get(url, headers=headers)
+        if response.status_code != 200:
+            print("Graph error:", response.status_code, response.text)
+            return [] 
         json_response = json.loads(response.text)
         clean_data = []
         for xlsx in json_response['value']:
@@ -536,3 +554,30 @@ class ExcelOnlineService:
         json_response = json.loads(response.text)
         
         return json_response
+    
+    def count_rows(self, workbook_id, sheet_name, session_id, drive_id=None):
+        try:
+            headers = {
+                'Authorization': f'Bearer {self.access_token}',
+                'Content-Type': 'application/json',
+                'workbook-session-id': session_id
+            }
+
+            if drive_id:
+                url = f'https://graph.microsoft.com/v1.0/drives/{drive_id}/items/{workbook_id}/workbook/worksheets/{sheet_name}/usedRange'
+            else:
+                url = f'https://graph.microsoft.com/v1.0/me/drive/items/{workbook_id}/workbook/worksheets/{sheet_name}/usedRange'
+
+            response = requests.get(url, headers=headers)
+            response.raise_for_status()
+
+            data = response.json()
+            row_count = data["address"].split(":")[-1]
+            row_number = ''.join(filter(str.isdigit, row_count))
+
+            return int(row_number) if row_number else 0
+
+        except Exception as e:
+            print("\x1B[31;40mError in count_rows\x1B[0m")
+            print(e)
+            raise

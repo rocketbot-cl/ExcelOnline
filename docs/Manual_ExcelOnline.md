@@ -134,6 +134,16 @@ Write a formula into a cell or range
 |Formula|Excel format Formula|=sum(2,2)|
 |Variable to assign|Variable to assign. Returns True if the change was successful, otherwise it will be False|nuevo_valor_celda|
 
+### Count rows
+  
+Returns the number of rows in an Excel workbook.
+|Parameters|Description|example|
+| --- | --- | --- |
+|Shared Drive ID (Optional)||097JB2CA2559D776|
+|Workbook ID|Workbook ID|FB60B3125CDC0C03!238 (20 digits ID Code)|
+|Worksheet name|Worksheet name|Sheet1|
+|Variable to assign|Variable to assign.|rows|
+
 ### (DEPRECATED) Set credentials
   
 Set credentials to make available the API

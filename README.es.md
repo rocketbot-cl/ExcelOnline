@@ -48,7 +48,10 @@ Escribir/cambiar el valor de una celda o rango
 10. Escribir formula  
 Escribir una fórmula en una celda o rango
 
-11. (OBSOLETO) Establecer credenciales  
+11. Contar filas  
+Devuelve el número de filas del archivo Excel.
+
+12. (OBSOLETO) Establecer credenciales  
 Establece las credenciales para tener disponible la API  
 
 

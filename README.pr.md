@@ -48,7 +48,10 @@ Digite/altere o valor de uma célula ou intervalo
 10. Escrever fórmula  
 Escrever uma fórmula em uma célula ou intervalo
 
-11. (DESCONTINUADO) Definir credenciais  
+11. Contar linhas  
+Devolve o número de linhas do arquivo Excel.
+
+12. (DESCONTINUADO) Definir credenciais  
 Defina as credenciais para ter a API disponível  
 
 

@@ -48,7 +48,10 @@ Write/change a cell or range value
 10. Write formula  
 Write a formula into a cell or range
 
-11. (DEPRECATED) Set credentials  
+11. Count rows  
+Returns the number of rows in an Excel workbook.
+
+12. (DEPRECATED) Set credentials  
 Set credentials to make available the API  
 
 
