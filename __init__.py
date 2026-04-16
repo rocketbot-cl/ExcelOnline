@@ -126,6 +126,7 @@ if module == "setCredentials_2":
                 
             refresh_token = credentials['refresh_token']
             response = excel_online_service.get_old_token(refresh_token)
+            is_connected = excel_online_service.create_tokens_file(response)
             SetVar(res, True)
         except IOError:
             if os.path.exists(path_user):
